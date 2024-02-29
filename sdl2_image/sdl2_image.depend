@@ -1,0 +1,6 @@
+# depslib dependency file v1.0
+1709228235 source:c:\users\duong\documents\gameproject\sdl2_image\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
