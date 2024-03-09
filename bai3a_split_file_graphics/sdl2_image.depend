@@ -1,0 +1,32 @@
+# depslib dependency file v1.0
+1709228235 source:c:\users\duong\documents\gameproject\sdl2_image\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1709228235 source:c:\users\duong\documents\gameproject\bai2_sdl2_image\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1709978359 source:c:\users\duong\documents\gameproject\bai3a_split_file_graphics\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
+1709979365 c:\users\duong\documents\gameproject\bai3a_split_file_graphics\defs.h
+
+1709979264 c:\users\duong\documents\gameproject\bai3a_split_file_graphics\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+
+1709979305 source:c:\users\duong\documents\gameproject\bai3a_split_file_graphics\graphics.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
