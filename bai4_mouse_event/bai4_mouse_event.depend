@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1709982218 source:c:\users\duong\documents\gameproject\bai4_mouse_event\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
+1709983155 c:\users\duong\documents\gameproject\bai4_mouse_event\defs.h
+
+1709983106 c:\users\duong\documents\gameproject\bai4_mouse_event\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+
