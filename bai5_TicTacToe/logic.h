@@ -9,7 +9,7 @@
 struct TicTacToe
 {
     char board[BOARD_SIZE][BOARD_SIZE];
-    char nextMove = O_CELL;
+    char nextMove = X_CELL;
 
     void init() {
         for (int i = 0; i < BOARD_SIZE; i++) {
@@ -22,7 +22,7 @@ struct TicTacToe
     void move(int row, int col) {
         if (row >= 0 && row < BOARD_SIZE && col >= 0 && col < BOARD_SIZE) {
             board[row][col] = nextMove;
-            nextMove = (nextMove == O_CELL) ? X_CELL : O_CELL;
+            nextMove = (nextMove == X_CELL) ? O_CELL : X_CELL;
         }
     }
 

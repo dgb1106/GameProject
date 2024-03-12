@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1710227898 source:c:\users\duong\documents\gameproject\bai5_tictactoe\main.cpp
+1710228101 source:c:\users\duong\documents\gameproject\bai5_tictactoe\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -9,11 +9,11 @@
 
 1710227389 c:\users\duong\documents\gameproject\bai5_tictactoe\defs.h
 
-1710227898 c:\users\duong\documents\gameproject\bai5_tictactoe\graphics.h
+1710228288 c:\users\duong\documents\gameproject\bai5_tictactoe\graphics.h
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 	"logic.h"
 
-1710227898 c:\users\duong\documents\gameproject\bai5_tictactoe\logic.h
+1710228569 c:\users\duong\documents\gameproject\bai5_tictactoe\logic.h
 
