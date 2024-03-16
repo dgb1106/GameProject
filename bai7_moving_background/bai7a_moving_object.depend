@@ -1,0 +1,58 @@
+# depslib dependency file v1.0
+1710527637 source:c:\users\duong\documents\gameproject\bai7a_moving_object\graphics.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
+
+1710527636 c:\users\duong\documents\gameproject\bai7a_moving_object\graphics.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+
+1710528921 c:\users\duong\documents\gameproject\bai7a_moving_object\defs.h
+
+1710528755 source:c:\users\duong\documents\gameproject\bai7a_moving_object\game.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"game.h"
+
+1710528731 c:\users\duong\documents\gameproject\bai7a_moving_object\game.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
+1710528895 source:c:\users\duong\documents\gameproject\bai7a_moving_object\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+	"game.h"
+
+1710567657 source:c:\users\duong\documents\gameproject\bai7_moving_background\graphics.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
+
+1710567682 c:\users\duong\documents\gameproject\bai7_moving_background\graphics.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+
+1710568234 c:\users\duong\documents\gameproject\bai7_moving_background\defs.h
+
+1710568069 source:c:\users\duong\documents\gameproject\bai7_moving_background\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
