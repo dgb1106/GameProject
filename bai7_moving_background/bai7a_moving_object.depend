@@ -35,7 +35,7 @@
 	"graphics.h"
 	"game.h"
 
-1710567657 source:c:\users\duong\documents\gameproject\bai7_moving_background\graphics.cpp
+1710672093 source:c:\users\duong\documents\gameproject\bai7_moving_background\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -47,9 +47,9 @@
 	<SDL_image.h>
 	"defs.h"
 
-1710568234 c:\users\duong\documents\gameproject\bai7_moving_background\defs.h
+1710671976 c:\users\duong\documents\gameproject\bai7_moving_background\defs.h
 
-1710568069 source:c:\users\duong\documents\gameproject\bai7_moving_background\main.cpp
+1710670565 source:c:\users\duong\documents\gameproject\bai7_moving_background\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
