@@ -6,3 +6,11 @@
 	<SDL.h>
 	<SDL_image.h>
 
+1710682916 source:c:\users\duong\documents\gameproject\mygame\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+
+1710673811 c:\users\duong\documents\gameproject\mygame\defs.h
+
