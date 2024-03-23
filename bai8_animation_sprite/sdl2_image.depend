@@ -1,0 +1,26 @@
+# depslib dependency file v1.0
+1709228235 source:c:\users\duong\documents\gameproject\sdl2_image\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1709228235 source:c:\users\duong\documents\gameproject\bai2_sdl2_image\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1711209576 source:c:\users\duong\documents\gameproject\bai8_animation_sprite\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
+1711209532 c:\users\duong\documents\gameproject\bai8_animation_sprite\defs.h
+
+1711209272 c:\users\duong\documents\gameproject\bai8_animation_sprite\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	<vector>
+
