@@ -6,11 +6,38 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1710682916 source:c:\users\duong\documents\gameproject\mygame\main.cpp
+1711734750 source:c:\users\duong\documents\gameproject\mygame\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
+1711734801 c:\users\duong\documents\gameproject\mygame\defs.h
+
+1711734683 c:\users\duong\documents\gameproject\mygame\graphics.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 
-1710673811 c:\users\duong\documents\gameproject\mygame\defs.h
+1711734446 c:\users\duong\documents\gameproject\mygame\background.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+	"graphics.h"
+
+1711734446 source:c:\users\duong\documents\gameproject\mygame\background.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
+	"background.h"
+
+1711734737 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
 
