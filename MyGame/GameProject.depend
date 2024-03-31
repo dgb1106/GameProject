@@ -6,14 +6,14 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1711879644 source:c:\users\duong\documents\gameproject\mygame\main.cpp
+1711879796 source:c:\users\duong\documents\gameproject\mygame\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 	"graphics.h"
 
-1711879658 c:\users\duong\documents\gameproject\mygame\defs.h
+1711882814 c:\users\duong\documents\gameproject\mygame\defs.h
 
 1711879606 c:\users\duong\documents\gameproject\mygame\graphics.h
 	<iostream>
