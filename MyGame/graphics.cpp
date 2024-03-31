@@ -57,21 +57,6 @@ void Graphics::renderTexture(SDL_Texture* texture, int x, int y) {
     SDL_RenderCopy(renderer, texture, NULL, &dest);
 }
 
-void Background::setTexture(SDL_Texture* _texture){
-    texture = _texture;
-    SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
-}
-
-void Background::scroll(int distance) {
-    scrollingOffset -= distance;
-    if (scrollingOffset < 0) scrollingOffset = width;
-}
-
-void Graphics::render(const Background& bgr) {
-    renderTexture(bgr.texture, bgr.scrollingOffset, 0);
-    renderTexture(bgr.texture, bgr.scrollingOffset - bgr.width, 0);
-}
-
 void Graphics::quit() {
     IMG_Quit();
 

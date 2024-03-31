@@ -6,18 +6,6 @@
 #include <SDL_image.h>
 #include "defs.h"
 
-struct Background
-{
-    SDL_Texture* texture;
-    int scrollingOffset = 0;
-    int width;
-    int height;
-
-    void setTexture(SDL_Texture* _texture);
-
-    void scroll(int distance);
-};
-
 struct Graphics
 {
     SDL_Window* window;
@@ -36,8 +24,6 @@ struct Graphics
     SDL_Texture* loadTexture(const char* filename);
 
     void renderTexture(SDL_Texture* texture, int x, int y);
-
-    void render(const Background& bgr);
 
     void quit();
 };
