@@ -1,8 +1,11 @@
 #include <iostream>
 #include <SDL.h>
 #include <SDL_image.h>
+
 #include "defs.h"
 #include "graphics.h"
+#include "object.h"
+#include "ball.h"
 
 using namespace std;
 
@@ -21,12 +24,10 @@ int main(int argc, char* argv[])
     graphics.init();
 
     SDL_Texture* background = graphics.loadTexture(BACKGROUND_IMG);
-    graphics.prepareScene(background);
-    graphics.presentScene();
+    SDL_Texture* ball_img = graphics.loadTexture(BALL_IMG);
 
-    SDL_Texture* ball = graphics.loadTexture(BALL_IMG);
-    graphics.renderTexture(ball, 172, 292);
-    graphics.presentScene();
+    Vector2D position(180 - 16, SCREEN_HEIGHT/2 - 16);
+    Ball ball(2, 2);
 
     bool quit = false;
     SDL_Event event;
@@ -35,7 +36,11 @@ int main(int argc, char* argv[])
             if (event.type == SDL_QUIT) quit = true;
         }
 
+        graphics.prepareScene(background);
+        graphics.renderTexture(ball_img, position.x, position.y);
+        graphics.presentScene();
 
+        ball.update(position);
     }
 
     graphics.quit();
