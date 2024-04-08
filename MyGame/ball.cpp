@@ -9,19 +9,24 @@ void Ball::update(Vector& position) {
     const double friction = 0.98;
     const double velocityThreshold = 0.2;
 
-    double absVelocityX = std::abs(velocity.x);
-    double absVelocityY = std::abs(velocity.y);
+    if (moving) {
+        double absVelocityX = std::abs(velocity.x);
+        double absVelocityY = std::abs(velocity.y);
 
-    velocity.x *= friction;
-    velocity.y *= friction;
+        velocity.x *= friction;
+        velocity.y *= friction;
 
-    if (absVelocityX < velocityThreshold && absVelocityY < velocityThreshold) {
-            velocity.x = 0;
-            velocity.y = 0;
+        if (absVelocityX < velocityThreshold && absVelocityY < velocityThreshold) {
+                velocity.x = 0;
+                velocity.y = 0;
+        }
+
+        position.x += velocity.x;
+        position.y += velocity.y;
+
+        if (position.x <= 0 || position.x >= SCREEN_WIDTH - ballSize) velocity.x *= -1;
+        if (position.y <= 0 || position.y >= SCREEN_HEIGHT - ballSize) velocity.y *= -1;
     }
-
-    position.x += velocity.x;
-    position.y += velocity.y;
 }
 
 void Ball::setVelocity(double _x, double _y) {

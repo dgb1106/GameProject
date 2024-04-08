@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
                 SDL_GetMouseState(&mouseX, &mouseY);
                 if (ball.clicked(mouseX, mouseY) == true) {
                     ball.startMoving();
-                    ball.setVelocity(2, 2);
+                    ball.setVelocity(20, 20);
                 }
             }
         }
