@@ -7,29 +7,46 @@
 #include "defs.h"
 #include "object.h"
 
-class Ball
+class Ball : public Object
 {
 public:
-    Ball(double initialVelocityX, double initialVelocityY, Vector initialPosition) {
-        velocity.x = initialVelocityX;
-        velocity.y = initialVelocityY;
-        position = initialPosition;
+    Ball(Vector _pos);
+
+    Vector getVelocity() {
+        return velocity;
     }
 
-    void update(Vector& position);
+    Vector getInitialMousePosition() {
+        return initialMousePosition;
+    }
+
+    Vector getFinalMousePosition() {
+        return finalMousePosition;
+    }
 
     void setVelocity(double _x, double _y);
 
-    Vector getPosition();
+    void setLaunchedVelocity(double _x, double _y);
 
-    void startMoving();
+    void setInitialMousePosition(double _x, double _y);
 
-    bool clicked(int mouseX, int mouseY);
+    void setFinalMousePosition(double _x, double _y);
+
+    void update(bool mouseDown, bool mousePressed);
 
 private:
     Vector velocity;
-    Vector position;
-    bool moving = false;
-    const int ballSize = 32;
+    Vector launchedVelocity;
+
+    double velocity1D;
+    double launchedVelocity1D;
+
+    Vector initialMousePosition;
+    Vector finalMousePosition;
+
+    bool moving = true;
+
+    int directionX = 1;
+    int directionY = 1;
 };
 #endif // _BALL__H

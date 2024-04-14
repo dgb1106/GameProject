@@ -2,7 +2,7 @@
 <CodeBlocks_project_file>
 	<FileVersion major="1" minor="6" />
 	<Project>
-		<Option title="GameProject" />
+		<Option title="MyGame" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
@@ -38,6 +38,7 @@
 		<Unit filename="graphics.cpp" />
 		<Unit filename="graphics.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

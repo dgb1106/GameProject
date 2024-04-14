@@ -24,4 +24,28 @@ struct Vector
         return *this;
     }
 };
+
+class Object
+{
+public:
+    Object();
+
+    Object(Vector _position);
+
+    Vector getPosition() {
+        return position;
+    }
+
+    double getAngle() {
+        return angle;
+    }
+
+    void setPosition(double _x, double _y);
+
+    void setAngle(double _angle);
+
+private:
+    Vector position;
+    double angle = 0;
+};
 #endif // _OBJECT__H

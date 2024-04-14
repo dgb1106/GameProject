@@ -6,7 +6,7 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1712511994 source:c:\users\duong\documents\gameproject\mygame\main.cpp
+1713091325 source:c:\users\duong\documents\gameproject\mygame\main.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -15,7 +15,7 @@
 	"object.h"
 	"ball.h"
 
-1711882814 c:\users\duong\documents\gameproject\mygame\defs.h
+1713084896 c:\users\duong\documents\gameproject\mygame\defs.h
 
 1711879606 c:\users\duong\documents\gameproject\mygame\graphics.h
 	<iostream>
@@ -43,19 +43,24 @@
 	<SDL_image.h>
 	"graphics.h"
 
-1712511657 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
+1713091925 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
 	<iostream>
+	<cmath>
 	<SDL.h>
 	<SDL_image.h>
+	"defs.h"
 	"ball.h"
 	"object.h"
 
-1712477057 c:\users\duong\documents\gameproject\mygame\ball.h
+1713089940 c:\users\duong\documents\gameproject\mygame\ball.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 	"object.h"
 
-1712476843 c:\users\duong\documents\gameproject\mygame\object.h
+1713085027 c:\users\duong\documents\gameproject\mygame\object.h
+
+1713085653 source:c:\users\duong\documents\gameproject\mygame\object.cpp
+	"object.h"
 
