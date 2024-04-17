@@ -29,6 +29,10 @@ void Ball::setFinalMousePosition(double _x, double _y) {
     finalMousePosition.y = _y;
 }
 
+double Ball::getDistance(Vector a, Vector b) {
+    return (sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)));
+}
+
 void Ball::update(bool mouseDown, bool mousePressed) {
     if (mousePressed && moving) {
         int mouseX = 0;
@@ -42,14 +46,28 @@ void Ball::update(bool mouseDown, bool mousePressed) {
         SDL_GetMouseState(&mouseX, &mouseY);
         setFinalMousePosition(mouseX, mouseY);
 
-        setVelocity((finalMousePosition.x - getInitialMousePosition().x)/-50, (finalMousePosition.y - getInitialMousePosition().y)/-50);
-        setLaunchedVelocity((finalMousePosition.x - getInitialMousePosition().x)/-50, (finalMousePosition.y - getInitialMousePosition().y)/-50);
+        velocity1D = getDistance(initialMousePosition, finalMousePosition);
 
-        velocity1D = SDL_sqrt(SDL_pow(abs(velocity.x), 2) + SDL_pow(abs(velocity.y), 2));
-        launchedVelocity1D = velocity1D;
+        double dx = finalMousePosition.x - initialMousePosition.x;
+        double dy = finalMousePosition.y - initialMousePosition.y;
 
-        directionX = velocity.x / abs(velocity.x);
-        directionY = velocity.y / abs(velocity.y);
+        setAngle(atan2(dy, dx));
+
+        if (dx < 0 && dy < 0) {
+            directionX = 1;
+            directionY = 1;
+        } else if (dx < 0 && dy > 0) {
+            directionX = 1;
+            directionY = -1;
+        } else if (dx > 0 && dy > 0) {
+            directionX = -1;
+            directionY = -1;
+        } else if (dx > 0 && dy < 0) {
+            directionX = -1;
+            directionY = 1;
+        }
+
+        setVelocity(abs(dx * cos(getAngle())) * directionX / 5, abs(dy * sin(getAngle())) * directionY / 5);
 
     } else {
         moving = false;
@@ -57,27 +75,32 @@ void Ball::update(bool mouseDown, bool mousePressed) {
         if (getVelocity().x > 0.1 || getVelocity().x < -0.1 || getVelocity().y > 0.1 || getVelocity().y < -0.1) {
             if (velocity1D > 0) {
                 velocity1D *= FRICTION;
+                velocity.x *= FRICTION;
+                velocity.y *= FRICTION;
             }
-
-            velocity.x = (velocity1D/launchedVelocity1D) * abs(launchedVelocity.x) * 10 * directionX;
-            velocity.y = (velocity1D/launchedVelocity1D) * abs(launchedVelocity.y) * 10 * directionY;
         } else {
             setVelocity(0,0);
             moving = true;
         }
 
-        if (getPosition().x + BALL_SIZE >= SCREEN_WIDTH) {
-            setVelocity(-abs(getVelocity().x), getVelocity().y);
-            directionX = -1;
-        } else if (getPosition().x <= 0) {
-            setVelocity(abs(getVelocity().x), getVelocity().y);
-            directionX = 1;
-        } else if (getPosition().y + BALL_SIZE >= SCREEN_HEIGHT) {
-            setVelocity(getVelocity().x, -abs(getVelocity().y));
-            directionY = -1;
-        } else if (getPosition().y <= 0) {
-            setVelocity(getVelocity().x, abs(getVelocity().y));
-            directionY = 1;
+        static bool xCollided = false;
+        static bool yCollided = false;
+
+        if (getPosition().x + BALL_SIZE >= SCREEN_WIDTH || getPosition().x <= 0) {
+            if (!xCollided) {
+                velocity.x *= -1;
+                xCollided = true;
+            }
+        } else {
+            xCollided = false;
+        }
+        if (getPosition().y + BALL_SIZE >= SCREEN_HEIGHT || getPosition().y <= 0) {
+            if (!yCollided) {
+                velocity.y *= -1;
+                yCollided = true;
+            }
+        } else {
+            yCollided = false;
         }
     }
 }

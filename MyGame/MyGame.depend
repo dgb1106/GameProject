@@ -43,7 +43,7 @@
 	<SDL_image.h>
 	"graphics.h"
 
-1713091925 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
+1713373518 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
 	<iostream>
 	<cmath>
 	<SDL.h>
@@ -52,7 +52,7 @@
 	"ball.h"
 	"object.h"
 
-1713089940 c:\users\duong\documents\gameproject\mygame\ball.h
+1713371205 c:\users\duong\documents\gameproject\mygame\ball.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

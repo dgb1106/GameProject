@@ -34,6 +34,8 @@ public:
 
     void update(bool mouseDown, bool mousePressed);
 
+    double getDistance(Vector a, Vector b);
+
 private:
     Vector velocity;
     Vector launchedVelocity;
