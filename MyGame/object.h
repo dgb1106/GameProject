@@ -1,6 +1,12 @@
 #ifndef _OBJECT__H
 #define _OBJECT__H
 
+#include <iostream>
+#include <SDL.h>
+#include <SDL_image.h>
+
+#include "defs.h"
+
 struct Vector
 {
     double x;
@@ -30,7 +36,7 @@ class Object
 public:
     Object();
 
-    Object(Vector _position);
+    Object(Vector _position, SDL_Texture* _texture);
 
     Vector getPosition() {
         return position;
@@ -40,12 +46,17 @@ public:
         return angle;
     }
 
+    SDL_Texture* getTexture() {
+        return texture;
+    }
+
     void setPosition(double _x, double _y);
 
     void setAngle(double _angle);
 
 private:
     Vector position;
+    SDL_Texture* texture;
     double angle = 0;
 };
 #endif // _OBJECT__H

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -6,6 +7,8 @@
 #include "graphics.h"
 #include "object.h"
 #include "ball.h"
+#include "hole.h"
+#include "tile.h"
 
 using namespace std;
 
@@ -21,18 +24,34 @@ void waitUntilKeyPressed() {
 Graphics graphics;
 SDL_Texture* background;
 SDL_Texture* ball_img;
+SDL_Texture* tile64_img;
+SDL_Texture* hole_img;
 
-Vector samplePosition(180 - BALL_SIZE/2, SCREEN_HEIGHT/2 - BALL_SIZE/2);
-Ball ball(samplePosition);
+Vector samplePosition(176 - BALL_SIZE/2, SCREEN_HEIGHT/2 - BALL_SIZE/2);
+Ball ball(samplePosition, ball_img);
+Vector sampleHole(608, 284);
+Hole hole(sampleHole, hole_img);
 
 bool quit = false;
 bool mouseDown = false;
 bool mousePressed = false;
 
+vector <Tile> loadTiles() {
+    vector <Tile> result;
+
+    result.push_back(Tile(Vector(368, 289), tile64_img));
+
+    return result;
+}
+
+vector <Tile> tiles = loadTiles();
+
 void initializeGraphics() {
     graphics.init();
     background = graphics.loadTexture(BACKGROUND_IMG);
     ball_img = graphics.loadTexture(BALL_IMG);
+    tile64_img = graphics.loadTexture(TILE64_IMG);
+    hole_img = graphics.loadTexture(HOLE_IMG);
 }
 
 void handleEvents() {
@@ -68,9 +87,10 @@ int main(int argc, char* argv[])
     while (!quit) {
         handleEvents();
 
-        ball.update(mouseDown, mousePressed);
+        ball.update(mouseDown, mousePressed, hole);
 
         graphics.prepareScene(background);
+        graphics.renderTexture(hole_img, 608, 284);
         graphics.renderTexture(ball_img, ball.getPosition().x, ball.getPosition().y);
         graphics.presentScene();
     }

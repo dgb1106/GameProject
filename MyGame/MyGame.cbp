@@ -37,9 +37,11 @@
 		<Unit filename="defs.h" />
 		<Unit filename="graphics.cpp" />
 		<Unit filename="graphics.h" />
+		<Unit filename="hole.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
+		<Unit filename="tile.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
