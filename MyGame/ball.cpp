@@ -55,6 +55,15 @@ void Ball::checkCollision() {
     }
 }
 
+void Ball::checkWin(Hole hole) {
+    int centerX = getPosition().x + BALL_SIZE/2;
+    int centerY = getPosition().y + BALL_SIZE/2;
+    if (centerX >= hole.getPosition().x + 6 && centerX <= hole.getPosition().x + hole.getTextureSize().w - 6 && centerY >= hole.getPosition().y + 6 && centerY <= hole.getPosition().y + hole.getTextureSize().h - 6) {
+        setPosition(hole.getPosition().x + 4, hole.getPosition().y + 4);
+        win = true;
+    }
+}
+
 void Ball::update(bool mouseDown, bool mousePressed, Hole hole) {
     if (mousePressed && moving) {
         int mouseX = 0;
@@ -107,10 +116,7 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole) {
         }
         checkCollision();
     }
-
-    if (getPosition().x >= hole.getPosition().x && getPosition().x + BALL_SIZE <= hole.getPosition().x + hole.getTextureSize().w && getPosition().y >= hole.getPosition().y && getPosition().y + BALL_SIZE <= hole.getPosition().y + hole.getTextureSize().h) {
-        win = true;
-    }
+    checkWin(hole);
     if (win) {
         velocity.x = 0;
         velocity.y = 0;

@@ -41,6 +41,16 @@ public:
 
     void checkCollision();
 
+    void checkWin(Hole hole);
+
+    void setWin(bool _win) {
+        win = _win;
+    }
+
+    bool getWinStatus() {
+        return win;
+    }
+
 private:
     Vector velocity;
     Vector launchedVelocity;

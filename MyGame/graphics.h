@@ -25,6 +25,8 @@ struct Graphics
 
     void renderTexture(SDL_Texture* texture, int x, int y);
 
+    //void renderTexture(Object object);
+
     void quit();
 };
 #endif // _GRAPHICS__H
