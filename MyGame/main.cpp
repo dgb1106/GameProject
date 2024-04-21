@@ -120,10 +120,10 @@ int main(int argc, char* argv[])
 
         handleEvents();
 
-        ball.update(mouseDown, mousePressed, hole);
+        ball.update(mouseDown, mousePressed, hole, tiles);
 
         if (ball.getWinStatus() == true) {
-            SDL_Delay(1000);
+            SDL_Delay(500);
             level++;
             loadLevel(level);
         }

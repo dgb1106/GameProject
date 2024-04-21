@@ -29,17 +29,15 @@ public:
 
     void setVelocity(double _x, double _y);
 
-    void setLaunchedVelocity(double _x, double _y);
-
     void setInitialMousePosition(double _x, double _y);
 
     void setFinalMousePosition(double _x, double _y);
 
-    void update(bool mouseDown, bool mousePressed, Hole hole);
+    void update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles);
 
     double getDistance(Vector a, Vector b);
 
-    void checkCollision();
+    void checkCollision(std::vector <Tile> tiles);
 
     void checkWin(Hole hole);
 
@@ -53,10 +51,8 @@ public:
 
 private:
     Vector velocity;
-    Vector launchedVelocity;
 
     double velocity1D;
-    double launchedVelocity1D;
 
     Vector initialMousePosition;
     Vector finalMousePosition;

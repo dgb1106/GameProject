@@ -1,22 +1,20 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <SDL.h>
 #include <SDL_image.h>
 
 #include "defs.h"
 #include "ball.h"
 #include "object.h"
+#include "hole.h"
+#include "tile.h"
 
 Ball::Ball(Vector _position, SDL_Texture* _texture) : Object(_position, _texture) {}
 
 void Ball::setVelocity(double _x, double _y) {
     velocity.x = _x;
     velocity.y = _y;
-}
-
-void Ball::setLaunchedVelocity(double _x, double _y) {
-    launchedVelocity.x = _x;
-    launchedVelocity.y = _y;
 }
 
 void Ball::setInitialMousePosition(double _x, double _y) {
@@ -33,7 +31,7 @@ double Ball::getDistance(Vector a, Vector b) {
     return (sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)));
 }
 
-void Ball::checkCollision() {
+void Ball::checkCollision(std::vector <Tile> tiles) {
     static bool xCollided = false;
     static bool yCollided = false;
 
@@ -53,6 +51,19 @@ void Ball::checkCollision() {
     } else {
         yCollided = false;
     }
+
+    for (Tile t : tiles) {
+        double newX = getPosition().x + velocity.x;
+        double newY = getPosition().y;
+        if (newX + BALL_SIZE >= t.getPosition().x && newX <= t.getPosition().x + t.getTextureSize().w && newY + BALL_SIZE >= t.getPosition().y && newY <= t.getPosition().y + t.getTextureSize().h) {
+            velocity.x *= -1;
+        }
+        newX = getPosition().x;
+        newY = getPosition().y + velocity.y;
+        if (newX + BALL_SIZE >= t.getPosition().x && newX <= t.getPosition().x + t.getTextureSize().w && newY + BALL_SIZE >= t.getPosition().y && newY <= t.getPosition().y + t.getTextureSize().h) {
+            velocity.y *= -1;
+        }
+    }
 }
 
 void Ball::checkWin(Hole hole) {
@@ -64,7 +75,7 @@ void Ball::checkWin(Hole hole) {
     }
 }
 
-void Ball::update(bool mouseDown, bool mousePressed, Hole hole) {
+void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles) {
     if (mousePressed && moving) {
         int mouseX = 0;
         int mouseY = 0;
@@ -114,7 +125,7 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole) {
             setVelocity(0,0);
             moving = true;
         }
-        checkCollision();
+        checkCollision(tiles);
     }
     checkWin(hole);
     if (win) {

@@ -10,9 +10,15 @@
 class Tile : public Object
 {
 public:
-    Tile(Vector _position, SDL_Texture* _texture) : Object(_position, _texture) {}
+    Tile(Vector _position, SDL_Texture* _texture) : Object(_position, _texture) {
+        SDL_QueryTexture(_texture, nullptr, nullptr, &textureSize.w, &textureSize.h);
+    }
+
+    SDL_Rect getTextureSize() {
+        return textureSize;
+    }
 
 private:
-
+    SDL_Rect textureSize;
 };
 #endif // _TILE__H
