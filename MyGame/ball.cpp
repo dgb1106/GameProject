@@ -110,7 +110,7 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
             directionY = 1;
         }
 
-        setVelocity(abs(velocity1D * cos(getAngle())) * directionX / 20, abs(velocity1D * sin(getAngle())) * directionY / 20);
+        setVelocity(abs(velocity1D * cos(getAngle())) * directionX / 30, abs(velocity1D * sin(getAngle())) * directionY / 30);
 
     } else {
         moving = false;
