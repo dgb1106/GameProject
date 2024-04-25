@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1714033455 source:c:\users\duong\documents\gameproject\bai9_sound_and_music\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	"defs.h"
+	"graphics.h"
+
+1714028947 c:\users\duong\documents\gameproject\bai9_sound_and_music\defs.h
+
+1714033464 c:\users\duong\documents\gameproject\bai9_sound_and_music\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	"defs.h"
+
