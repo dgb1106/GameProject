@@ -14,6 +14,11 @@ const int SCREEN_HEIGHT = 600;
 #define TILEHORIZONTAL_IMG "assets\\TileHorizontal.png"
 #define TILEVERTICAL_IMG "assets\\TileVertical.png"
 
+#define HIT_SOUND "assets\\sounds\\BallHit.wav"
+#define BOUNCE_SOUND "assets\\sounds\\Bounce.wav"
+#define LEVELUP_SOUND "assets\\sounds\\LevelUp.wav"
+#define FINALWIN_SOUND "assets\\sounds\\FinalWin.wav"
+
 const int BORDER_SIZE_HORIZONTAL = 16;
 const int BORDER_SIZE_VERTICAL = 13;
 

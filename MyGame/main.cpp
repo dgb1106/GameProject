@@ -2,6 +2,7 @@
 #include <vector>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 
 #include "defs.h"
 #include "graphics.h"
@@ -9,6 +10,7 @@
 #include "ball.h"
 #include "hole.h"
 #include "tile.h"
+#include "music.h"
 
 using namespace std;
 
@@ -30,6 +32,12 @@ SDL_Texture* tile64_img;
 SDL_Texture* tile32_img;
 SDL_Texture* tileHorizontal_img;
 SDL_Texture* tileVertical_img;
+
+Music music;
+Mix_Chunk* hit_sound;
+Mix_Chunk* bounce_sound;
+Mix_Chunk* levelUp_sound;
+Mix_Chunk* finalWin_sound;
 
 Vector samplePosition(176 - BALL_SIZE/2, SCREEN_HEIGHT/2 - BALL_SIZE/2);
 Ball ball(samplePosition, ball_img);
@@ -57,6 +65,14 @@ void initializeGraphics() {
     tile32_img = graphics.loadTexture(TILE32_IMG);
     tileHorizontal_img = graphics.loadTexture(TILEHORIZONTAL_IMG);
     tileVertical_img = graphics.loadTexture(TILEVERTICAL_IMG);
+}
+
+void initializeMusic() {
+    music.init();
+    hit_sound = music.loadSound(HIT_SOUND);
+    bounce_sound = music.loadSound(BOUNCE_SOUND);
+    levelUp_sound = music.loadSound(LEVELUP_SOUND);
+    finalWin_sound = music.loadSound(FINALWIN_SOUND);
 }
 
 void handleEvents() {
@@ -191,17 +207,27 @@ int main(int argc, char* argv[])
 {
     initializeGraphics();
 
+    initializeMusic();
+
+    static bool played = false;
+
     while (!quit) {
         tiles = loadTiles(level);
 
         handleEvents();
 
-        ball.update(mouseDown, mousePressed, hole, tiles);
+        ball.update(mouseDown, mousePressed, hole, tiles, music, hit_sound, bounce_sound);
 
         if (ball.getWinStatus() == true) {
-            SDL_Delay(500);
+            if (level <= 4) music.play(levelUp_sound);
+            SDL_Delay(1000);
             level++;
             loadLevel(level);
+        }
+
+        if (level > 5 && !played) {
+            music.play(finalWin_sound);
+            played = true;
         }
 
         graphics.prepareScene(background);

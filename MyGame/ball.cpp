@@ -9,6 +9,7 @@
 #include "object.h"
 #include "hole.h"
 #include "tile.h"
+#include "music.h"
 
 Ball::Ball(Vector _position, SDL_Texture* _texture) : Object(_position, _texture) {}
 
@@ -31,7 +32,7 @@ double Ball::getDistance(Vector a, Vector b) {
     return (sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2)));
 }
 
-void Ball::checkCollision(std::vector <Tile> tiles) {
+void Ball::checkCollision(std::vector <Tile> tiles, Music music, Mix_Chunk* bounce) {
     static bool xCollided = false;
     static bool yCollided = false;
 
@@ -39,6 +40,7 @@ void Ball::checkCollision(std::vector <Tile> tiles) {
         if (!xCollided) {
             velocity.x *= -1;
             xCollided = true;
+            music.play(bounce);
         }
     } else {
         xCollided = false;
@@ -47,6 +49,7 @@ void Ball::checkCollision(std::vector <Tile> tiles) {
         if (!yCollided) {
             velocity.y *= -1;
             yCollided = true;
+            music.play(bounce);
         }
     } else {
         yCollided = false;
@@ -57,11 +60,13 @@ void Ball::checkCollision(std::vector <Tile> tiles) {
         double newY = getPosition().y;
         if (newX + BALL_SIZE >= t.getPosition().x && newX <= t.getPosition().x + t.getTextureSize().w && newY + BALL_SIZE >= t.getPosition().y && newY <= t.getPosition().y + t.getTextureSize().h) {
             velocity.x *= -1;
+            music.play(bounce);
         }
         newX = getPosition().x;
         newY = getPosition().y + velocity.y;
         if (newX + BALL_SIZE >= t.getPosition().x && newX <= t.getPosition().x + t.getTextureSize().w && newY + BALL_SIZE >= t.getPosition().y && newY <= t.getPosition().y + t.getTextureSize().h) {
             velocity.y *= -1;
+            music.play(bounce);
         }
     }
 }
@@ -75,7 +80,7 @@ void Ball::checkWin(Hole hole) {
     }
 }
 
-void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles) {
+void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, Music music, Mix_Chunk* hit, Mix_Chunk* bounce) {
     if (mousePressed && moving) {
         int mouseX = 0;
         int mouseY = 0;
@@ -83,6 +88,7 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
         setInitialMousePosition(mouseX, mouseY);
     }
 
+    static bool played = false;
     if (mouseDown && moving) {
         int mouseX = 0;
         int mouseY = 0;
@@ -110,10 +116,14 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
             directionY = 1;
         }
 
-        setVelocity(abs(velocity1D * cos(getAngle())) * directionX / 30, abs(velocity1D * sin(getAngle())) * directionY / 30);
-
+        setVelocity(abs(velocity1D * cos(getAngle())) * directionX / 50, abs(velocity1D * sin(getAngle())) * directionY / 50);
+        if (!played) {
+            music.play(hit);
+            played = true;
+        }
     } else {
         moving = false;
+        played = false;
         setPosition(getPosition().x + getVelocity().x, getPosition().y + getVelocity().y);
         if (getVelocity().x > 0.1 || getVelocity().x < -0.1 || getVelocity().y > 0.1 || getVelocity().y < -0.1) {
             if (velocity1D > 0) {
@@ -125,7 +135,7 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
             setVelocity(0,0);
             moving = true;
         }
-        checkCollision(tiles);
+        checkCollision(tiles, music, bounce);
     }
     checkWin(hole);
     if (win) {

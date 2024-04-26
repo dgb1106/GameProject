@@ -9,6 +9,7 @@
 #include "object.h"
 #include "hole.h"
 #include "tile.h"
+#include "music.h"
 
 class Ball : public Object
 {
@@ -33,11 +34,11 @@ public:
 
     void setFinalMousePosition(double _x, double _y);
 
-    void update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles);
+    void update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, Music music, Mix_Chunk* hit, Mix_Chunk* bounce);
 
     double getDistance(Vector a, Vector b);
 
-    void checkCollision(std::vector <Tile> tiles);
+    void checkCollision(std::vector <Tile> tiles, Music music, Mix_Chunk* bounce);
 
     void checkWin(Hole hole);
 
