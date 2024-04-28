@@ -10,12 +10,19 @@
 class Hole : public Object
 {
 public:
+    Hole() {
+        setPosition(0, 0);
+        //texture = nullptr;
+    }
+
     Hole(Vector _position, SDL_Texture* _texture) : Object(_position, _texture) {
         textureSize.w = 32;
         textureSize.h = 32;
     }
 
     SDL_Rect getTextureSize() {
+        textureSize.w = 32;
+        textureSize.h = 32;
         return textureSize;
     }
 private:

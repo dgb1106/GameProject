@@ -5,19 +5,20 @@
 #include <SDL_mixer.h>
 #include "defs.h"
 
-struct Music
-{
-    void init();
+void initMusic();
 
-    void logErrorAndExit(const char* msg, const char* error);
+void logErrorAndExit(const char* msg, const char* error);
 
-    Mix_Music* loadMusic(const char* filename);
+Mix_Music* loadMusic(const char* filename);
 
-    Mix_Chunk* loadSound(const char* filename);
+Mix_Chunk* loadSound(const char* filename);
 
-    void play(Mix_Music* music);
+void play(Mix_Music* music);
 
-    void play(Mix_Chunk* chunk);
-};
+void play(Mix_Chunk* chunk);
+
+void pauseMusic();
+
+void quitMusic();
 
 #endif // _MUSIC__H

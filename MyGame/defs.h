@@ -3,7 +3,7 @@
 
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
-#define WINDOW_TITLE "Game"
+#define WINDOW_TITLE "MiniGolf"
 
 #define BACKGROUND_IMG "assets\\Background.png"
 #define BALL_IMG "assets\\Ball.png"
@@ -14,6 +14,7 @@ const int SCREEN_HEIGHT = 600;
 #define TILEHORIZONTAL_IMG "assets\\TileHorizontal.png"
 #define TILEVERTICAL_IMG "assets\\TileVertical.png"
 
+#define BG_MUSIC "assets\\sounds\\GameMusic.mp3"
 #define HIT_SOUND "assets\\sounds\\BallHit.wav"
 #define BOUNCE_SOUND "assets\\sounds\\Bounce.wav"
 #define LEVELUP_SOUND "assets\\sounds\\LevelUp.wav"
@@ -23,6 +24,6 @@ const int BORDER_SIZE_HORIZONTAL = 16;
 const int BORDER_SIZE_VERTICAL = 13;
 
 const int BALL_SIZE = 24;
-const double FRICTION = 0.985;
+const double FRICTION = 0.5;
 
 #endif // _DEFS__H

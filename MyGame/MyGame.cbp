@@ -35,6 +35,8 @@
 		<Unit filename="ball.cpp" />
 		<Unit filename="ball.h" />
 		<Unit filename="defs.h" />
+		<Unit filename="game.cpp" />
+		<Unit filename="game.h" />
 		<Unit filename="graphics.cpp" />
 		<Unit filename="graphics.h" />
 		<Unit filename="hole.h" />

@@ -2,6 +2,7 @@
 #define _OBJECT__H
 
 #include <iostream>
+#include <cmath>
 #include <SDL.h>
 #include <SDL_image.h>
 
@@ -31,6 +32,8 @@ struct Vector
     }
 };
 
+double getDistance(Vector a, Vector b);
+
 class Object
 {
 public:
@@ -42,21 +45,16 @@ public:
         return position;
     }
 
-    double getAngle() {
-        return angle;
-    }
-
     SDL_Texture* getTexture() {
         return texture;
     }
 
     void setPosition(double _x, double _y);
 
-    void setAngle(double _angle);
+    void setTexture(SDL_Texture* _texture);
 
 private:
     Vector position;
     SDL_Texture* texture;
-    double angle = 0;
 };
 #endif // _OBJECT__H

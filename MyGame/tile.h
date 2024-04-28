@@ -10,6 +10,11 @@
 class Tile : public Object
 {
 public:
+    Tile() {
+        setPosition(0, 0);
+        //texture = nullptr;
+    }
+
     Tile(Vector _position, SDL_Texture* _texture) : Object(_position, _texture) {
         SDL_QueryTexture(_texture, nullptr, nullptr, &textureSize.w, &textureSize.h);
     }

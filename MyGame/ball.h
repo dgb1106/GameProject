@@ -14,6 +14,8 @@
 class Ball : public Object
 {
 public:
+    Ball();
+
     Ball(Vector _position, SDL_Texture* _texture);
 
     Vector getVelocity() {
@@ -34,13 +36,11 @@ public:
 
     void setFinalMousePosition(double _x, double _y);
 
-    void update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, Music music, Mix_Chunk* hit, Mix_Chunk* bounce);
+    void update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, Mix_Chunk* hit, Mix_Chunk* bounce);
 
-    double getDistance(Vector a, Vector b);
+    void checkCollision(std::vector <Tile> tiles, Mix_Chunk* bounce);
 
-    void checkCollision(std::vector <Tile> tiles, Music music, Mix_Chunk* bounce);
-
-    void checkWin(Hole hole);
+    bool checkWin(Hole hole);
 
     void setWin(bool _win) {
         win = _win;
@@ -57,6 +57,8 @@ private:
 
     Vector initialMousePosition;
     Vector finalMousePosition;
+
+    double angle = 0;
 
     bool moving = true;
 

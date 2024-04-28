@@ -6,13 +6,14 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1714147223 source:c:\users\duong\documents\gameproject\mygame\main.cpp
+1714324420 source:c:\users\duong\documents\gameproject\mygame\main.cpp
 	<iostream>
 	<vector>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
 	"defs.h"
+	"game.h"
 	"graphics.h"
 	"object.h"
 	"ball.h"
@@ -20,7 +21,7 @@
 	"tile.h"
 	"music.h"
 
-1714145876 c:\users\duong\documents\gameproject\mygame\defs.h
+1714322813 c:\users\duong\documents\gameproject\mygame\defs.h
 
 1713631440 c:\users\duong\documents\gameproject\mygame\graphics.h
 	<iostream>
@@ -48,7 +49,7 @@
 	<SDL_image.h>
 	"graphics.h"
 
-1714147260 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
+1714324420 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -61,7 +62,7 @@
 	"tile.h"
 	"music.h"
 
-1714146948 c:\users\duong\documents\gameproject\mygame\ball.h
+1714323393 c:\users\duong\documents\gameproject\mygame\ball.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -72,34 +73,57 @@
 	"tile.h"
 	"music.h"
 
-1713443310 c:\users\duong\documents\gameproject\mygame\object.h
+1714323701 c:\users\duong\documents\gameproject\mygame\object.h
 	<iostream>
+	<cmath>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 
-1713443314 source:c:\users\duong\documents\gameproject\mygame\object.cpp
+1714323701 source:c:\users\duong\documents\gameproject\mygame\object.cpp
 	"object.h"
 
-1713443349 c:\users\duong\documents\gameproject\mygame\hole.h
-	<SDL.h>
-	<SDL_image.h>
-	<iostream>
-	"defs.h"
-	"object.h"
-
-1713688505 c:\users\duong\documents\gameproject\mygame\tile.h
+1714304278 c:\users\duong\documents\gameproject\mygame\hole.h
 	<SDL.h>
 	<SDL_image.h>
 	<iostream>
 	"defs.h"
 	"object.h"
 
-1714144761 source:c:\users\duong\documents\gameproject\mygame\music.cpp
+1714301357 c:\users\duong\documents\gameproject\mygame\tile.h
+	<SDL.h>
+	<SDL_image.h>
+	<iostream>
+	"defs.h"
+	"object.h"
+
+1714301560 source:c:\users\duong\documents\gameproject\mygame\music.cpp
 	"music.h"
 
-1714144740 c:\users\duong\documents\gameproject\mygame\music.h
+1714301656 c:\users\duong\documents\gameproject\mygame\music.h
 	<SDL.h>
 	<SDL_mixer.h>
 	"defs.h"
+
+1714304746 c:\users\duong\documents\gameproject\mygame\game.h
+	<iostream>
+	<vector>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	"defs.h"
+	"game.h"
+	"graphics.h"
+	"object.h"
+	"ball.h"
+	"hole.h"
+	"tile.h"
+	"music.h"
+
+1714324379 source:c:\users\duong\documents\gameproject\mygame\game.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_mixer.h>
+	"game.h"
 
