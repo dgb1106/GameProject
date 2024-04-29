@@ -32,6 +32,8 @@ void Game::init() {
     ball.setTexture(ball_img);
     paint.setTexture(paint_img);
     hole.setTexture(hole_img);
+
+    frameStart = SDL_GetTicks();
 }
 
 void Game::handleEvents() {
@@ -180,6 +182,9 @@ void Game::renderGraphics() {
 }
 
 void Game::running() {
+    frameTime = SDL_GetTicks() - frameStart;
+    frameTime = frameStart;
+
     tiles = loadTiles(level);
 
     handleEvents();
@@ -201,6 +206,10 @@ void Game::running() {
         pauseMusic();
         play(finalWin_sound);
         played = true;
+    }
+
+    if (frameDelay > frameTime) {
+        SDL_Delay(frameDelay - frameTime);
     }
 }
 

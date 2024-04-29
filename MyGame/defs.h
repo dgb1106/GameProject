@@ -5,6 +5,9 @@ const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 #define WINDOW_TITLE "MiniGolf"
 
+const int FPS = 60;
+const int frameDelay = 1000 / FPS;
+
 #define BACKGROUND_IMG "assets\\Background.png"
 #define BALL_IMG "assets\\Ball.png"
 #define HOLE_IMG "assets\\Hole.png"
@@ -24,6 +27,6 @@ const int BORDER_SIZE_HORIZONTAL = 16;
 const int BORDER_SIZE_VERTICAL = 13;
 
 const int BALL_SIZE = 24;
-const double FRICTION = 0.5;
+const double FRICTION = 0.95;
 
 #endif // _DEFS__H

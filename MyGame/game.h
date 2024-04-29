@@ -47,6 +47,9 @@ struct Game
     bool mouseDown = false;
     bool mousePressed = false;
 
+    Uint32 frameStart;
+    int frameTime;
+
     void initializeGraphics();
 
     void initializeMusic();

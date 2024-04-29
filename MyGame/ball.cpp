@@ -98,13 +98,10 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
 
         velocity1D = getDistance(initialMousePosition, finalMousePosition);
 
-        double dx = finalMousePosition.x - initialMousePosition.x;
-        double dy = finalMousePosition.y - initialMousePosition.y;
+        double dx = (finalMousePosition.x - initialMousePosition.x);
+        double dy = (finalMousePosition.y - initialMousePosition.y);
 
         angle = atan2(dy, dx);
-        std::cerr << "angle: " << angle << std::endl;
-        std::cerr << "cos: " << cos(angle) << std::endl;
-        std::cerr << "sin: " << sin(angle) << std::endl;
 
         if (dx < 0 && dy < 0) {
             directionX = 1;
@@ -121,6 +118,7 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
         }
 
         setVelocity(abs(velocity1D * cos(angle)) * directionX, abs(velocity1D * sin(angle)) * directionY);
+        setVelocity(velocity.x / 10, velocity.y / 10);
         if (!played) {
             play(hit);
             played = true;
@@ -132,8 +130,8 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
         if (velocity.x > 0.1 || velocity.x < -0.1 || velocity.y > 0.1 || velocity.y < -0.1) {
             if (velocity1D > 0) {
                 velocity1D *= FRICTION;
-                velocity.x -= velocity.x * FRICTION;
-                velocity.y -= velocity.y * FRICTION;
+                velocity.x *= FRICTION;
+                velocity.y *= FRICTION;
             }
         } else {
             setVelocity(0,0);
