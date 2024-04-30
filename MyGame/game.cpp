@@ -26,9 +26,16 @@ void Game::initializeMusic() {
     finalWin_sound = loadSound(FINALWIN_SOUND);
 }
 
+void Game::initializeFont() {
+    initFont();
+    KaphFont = loadFont(FONT_KAPH, STROKES_SIZE);
+}
+
 void Game::init() {
     initializeGraphics();
     initializeMusic();
+    initializeFont();
+
     ball.setTexture(ball_img);
     paint.setTexture(paint_img);
     hole.setTexture(hole_img);
@@ -106,7 +113,7 @@ std::vector <Tile> Game::loadTiles(int level) {
         tiles.push_back(Tile(Vector(591, 460), tileHorizontal_img));
         break;
     case 5:
-        tiles.push_back(Tile(Vector(114, 14), tileVertical_img));
+        //tiles.push_back(Tile(Vector(114, 14), tileVertical_img));
         tiles.push_back(Tile(Vector(241, 14), tileVertical_img));
         tiles.push_back(Tile(Vector(463, 46), tile32_img));
         tiles.push_back(Tile(Vector(592, 46), tile32_img));
@@ -168,6 +175,12 @@ void Game::loadLevel(int level) {
 void Game::renderGraphics() {
     graphics.prepareScene(background);
 
+    SDL_Color BLACK_COLOR = {0, 0, 0, 255};
+    strokesText = graphics.renderText(getStrokesCount(), KaphFont, BLACK_COLOR);
+    graphics.renderTexture(strokesText, 20, 18);
+    levelText = graphics.renderText(getLevelCount(), KaphFont, BLACK_COLOR);
+    graphics.renderTexture(levelText, 20, 50);
+
     graphics.renderTexture(hole_img, hole.getPosition().x, hole.getPosition().y);
 
     graphics.renderTexture(paint_img, paint.getPosition().x - 4, paint.getPosition().y - 4);
@@ -181,6 +194,18 @@ void Game::renderGraphics() {
     graphics.presentScene();
 }
 
+const char* Game::getStrokesCount() {
+    std::string s = "STROKES: ";
+    s += std::to_string(strokes);
+    return s.c_str();
+}
+
+const char* Game::getLevelCount() {
+    std::string s = "LEVEL: ";
+    s += std::to_string(level);
+    return s.c_str();
+}
+
 void Game::running() {
     frameTime = SDL_GetTicks() - frameStart;
     frameTime = frameStart;
@@ -189,7 +214,7 @@ void Game::running() {
 
     handleEvents();
 
-    ball.update(mouseDown, mousePressed, hole, tiles, hit_sound, bounce_sound);
+    ball.update(mouseDown, mousePressed, hole, tiles, hit_sound, bounce_sound, strokes);
 
     renderGraphics();
 
@@ -216,6 +241,7 @@ void Game::running() {
 void Game::freeMemory() {
     graphics.quit();
     quitMusic();
+    quitFont();
 
     SDL_DestroyTexture(background);
     background = nullptr;
@@ -244,4 +270,8 @@ void Game::freeMemory() {
     levelUp_sound = nullptr;
     Mix_FreeChunk(finalWin_sound);
     finalWin_sound = nullptr;
+
+    SDL_DestroyTexture(strokesText);
+    strokesText = nullptr;
+    TTF_CloseFont(KaphFont);
 }

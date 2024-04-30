@@ -6,12 +6,13 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1714360933 source:c:\users\duong\documents\gameproject\mygame\main.cpp
+1714460131 source:c:\users\duong\documents\gameproject\mygame\main.cpp
 	<iostream>
 	<vector>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
+	<SDL_ttf.h>
 	"defs.h"
 	"game.h"
 	"graphics.h"
@@ -21,13 +22,14 @@
 	"tile.h"
 	"music.h"
 
-1714402671 c:\users\duong\documents\gameproject\mygame\defs.h
+1714460358 c:\users\duong\documents\gameproject\mygame\defs.h
 
-1713631440 c:\users\duong\documents\gameproject\mygame\graphics.h
+1714459519 c:\users\duong\documents\gameproject\mygame\graphics.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
+	"text.h"
 
 1711734446 c:\users\duong\documents\gameproject\mygame\background.h
 	<iostream>
@@ -43,13 +45,13 @@
 	"graphics.h"
 	"background.h"
 
-1713631440 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
+1714459981 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"graphics.h"
 
-1714402570 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
+1714460694 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -62,7 +64,7 @@
 	"tile.h"
 	"music.h"
 
-1714403024 c:\users\duong\documents\gameproject\mygame\ball.h
+1714460426 c:\users\duong\documents\gameproject\mygame\ball.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -97,20 +99,23 @@
 	"defs.h"
 	"object.h"
 
-1714359952 source:c:\users\duong\documents\gameproject\mygame\music.cpp
+1714458576 source:c:\users\duong\documents\gameproject\mygame\music.cpp
 	"music.h"
 
-1714301656 c:\users\duong\documents\gameproject\mygame\music.h
+1714458558 c:\users\duong\documents\gameproject\mygame\music.h
+	<iostream>
 	<SDL.h>
 	<SDL_mixer.h>
 	"defs.h"
+	"graphics.h"
 
-1714361163 c:\users\duong\documents\gameproject\mygame\game.h
+1714461115 c:\users\duong\documents\gameproject\mygame\game.h
 	<iostream>
 	<vector>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
+	<SDL_ttf.h>
 	"defs.h"
 	"game.h"
 	"graphics.h"
@@ -120,10 +125,21 @@
 	"tile.h"
 	"music.h"
 
-1714403024 source:c:\users\duong\documents\gameproject\mygame\game.cpp
+1714461837 source:c:\users\duong\documents\gameproject\mygame\game.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
 	"game.h"
+
+1714460634 c:\users\duong\documents\gameproject\mygame\text.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	"defs.h"
+	"graphics.h"
+
+1714460634 source:c:\users\duong\documents\gameproject\mygame\text.cpp
+	"text.h"
 

@@ -3,6 +3,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 
 #include "defs.h"
 #include "game.h"
@@ -32,8 +33,6 @@ int main(int argc, char* argv[])
     play(game.bg_music);
 
     bool quit = false;
-    Uint32 frameStart;
-    int frameTime;
 
     game.loadLevel(1);
 

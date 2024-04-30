@@ -81,7 +81,7 @@ bool Ball::checkWin(Hole hole) {
     return false;
 }
 
-void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, Mix_Chunk* hit, Mix_Chunk* bounce) {
+void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, Mix_Chunk* hit, Mix_Chunk* bounce, int& strokes) {
     if (mousePressed && moving) {
         int mouseX = 0;
         int mouseY = 0;
@@ -119,11 +119,15 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
 
         setVelocity(abs(velocity1D * cos(angle)) * directionX, abs(velocity1D * sin(angle)) * directionY);
         setVelocity(velocity.x / 10, velocity.y / 10);
+
         if (!played) {
             play(hit);
             played = true;
+            strokes++;
         }
+
     } else {
+
         moving = false;
         played = false;
         setPosition(getPosition().x + velocity.x, getPosition().y + velocity.y);

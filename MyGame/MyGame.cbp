@@ -45,6 +45,8 @@
 		<Unit filename="music.h" />
 		<Unit filename="object.cpp" />
 		<Unit filename="object.h" />
+		<Unit filename="text.cpp" />
+		<Unit filename="text.h" />
 		<Unit filename="tile.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

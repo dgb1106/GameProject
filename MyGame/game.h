@@ -6,6 +6,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
+#include <SDL_ttf.h>
 
 #include "defs.h"
 #include "game.h"
@@ -35,6 +36,8 @@ struct Game
     Mix_Chunk* levelUp_sound;
     Mix_Chunk* finalWin_sound;
 
+    TTF_Font* KaphFont;
+
     Ball ball;
     Object paint;
     Hole hole;
@@ -42,6 +45,9 @@ struct Game
     std::vector <Tile> tiles;
 
     int level = 1;
+    SDL_Texture* levelText;
+    int strokes = 0;
+    SDL_Texture* strokesText;
 
     bool quit = false;
     bool mouseDown = false;
@@ -54,6 +60,8 @@ struct Game
 
     void initializeMusic();
 
+    void initializeFont();
+
     void init();
 
     void handleEvents();
@@ -63,6 +71,10 @@ struct Game
     void loadLevel(int level);
 
     void renderGraphics();
+
+    const char* getStrokesCount();
+
+    const char* getLevelCount();
 
     void running();
 

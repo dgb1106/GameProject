@@ -23,6 +23,9 @@ const int frameDelay = 1000 / FPS;
 #define LEVELUP_SOUND "assets\\sounds\\LevelUp.wav"
 #define FINALWIN_SOUND "assets\\sounds\\FinalWin.wav"
 
+#define FONT_KAPH "assets\\fonts\\Kaph-Regular.ttf"
+const int STROKES_SIZE = 24;
+
 const int BORDER_SIZE_HORIZONTAL = 16;
 const int BORDER_SIZE_VERTICAL = 13;
 

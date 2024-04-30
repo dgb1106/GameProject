@@ -5,13 +5,14 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include "defs.h"
+#include "text.h"
+
+void logErrorAndExit(const char* msg, const char* error);
 
 struct Graphics
 {
     SDL_Window* window;
     SDL_Renderer* renderer;
-
-    void logErrorAndExit(const char* msg, const char* error);
 
     void init();
 
@@ -25,7 +26,7 @@ struct Graphics
 
     void renderTexture(SDL_Texture* texture, int x, int y);
 
-    //void renderTexture(Object object);
+    SDL_Texture* renderText(const char* text, TTF_Font* font, SDL_Color color);
 
     void quit();
 };

@@ -4,7 +4,7 @@
 
 #include "graphics.h"
 
-void Graphics::logErrorAndExit(const char* msg, const char* error) {
+void logErrorAndExit(const char* msg, const char* error) {
     SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "%s: %s", msg, error);
     SDL_Quit();
 }
@@ -55,6 +55,23 @@ void Graphics::renderTexture(SDL_Texture* texture, int x, int y) {
     SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
 
     SDL_RenderCopy(renderer, texture, NULL, &dest);
+}
+
+SDL_Texture* Graphics::renderText(const char* text, TTF_Font* font, SDL_Color color) {
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, text, color);
+    if (textSurface == nullptr) {
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR,"Render text surface %s", TTF_GetError());
+        return nullptr;
+    }
+
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    SDL_FreeSurface(textSurface);
+    if (texture == nullptr) {
+        SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR,"Create texture from text %s", SDL_GetError());
+        return nullptr;
+    }
+
+    return texture;
 }
 
 void Graphics::quit() {
