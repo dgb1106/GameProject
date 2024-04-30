@@ -1,0 +1,17 @@
+# depslib dependency file v1.0
+1714449601 source:c:\users\duong\documents\gameproject\bai10_text_render\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	"graphics.h"
+	"defs.h"
+
+1714449601 c:\users\duong\documents\gameproject\bai10_text_render\defs.h
+
+1714449844 c:\users\duong\documents\gameproject\bai10_text_render\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	<SDL_ttf.h>
+	"defs.h"
+
