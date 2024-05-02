@@ -85,7 +85,7 @@ struct Game
 
     void handleEvents(bool& playedAgain);
 
-    std::vector <Tile> loadTiles(int level);
+    std::vector <Tile> loadTiles(std::vector <Tile>& tiles, int level);
 
     void loadLevel(int level);
 

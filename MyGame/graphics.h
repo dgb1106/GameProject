@@ -14,6 +14,7 @@ struct Graphics
 {
     SDL_Window* window;
     SDL_Renderer* renderer;
+    SDL_Surface* windowIcon;
 
     void init();
 

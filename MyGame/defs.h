@@ -4,6 +4,7 @@
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 #define WINDOW_TITLE "MiniGolf"
+#define WINDOW_ICON "assets\\images\\WindowIcon.png"
 
 const SDL_Color BLACK_COLOR = {0, 0, 0, 255};
 const SDL_Color WHITE_COLOR = {255, 255, 255, 255};

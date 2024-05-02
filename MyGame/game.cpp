@@ -91,8 +91,8 @@ void Game::handleEvents(bool& playedAgain) {
     }
 }
 
-std::vector <Tile> Game::loadTiles(int level) {
-    std::vector <Tile> tiles;
+std::vector <Tile> Game::loadTiles(std::vector <Tile>& tiles, int level) {
+    tiles.clear();
     switch (level) {
     case 1:
         tiles.push_back(Tile(Vector(368, 268), tile64_img));
@@ -162,7 +162,7 @@ void Game::loadLevel(int level) {
     ball.setVelocity(0, 0);
     ball.setWin(false);
 
-    tiles = loadTiles(level);
+    tiles = loadTiles(tiles, level);
 
     switch (level) {
     case 1:
@@ -197,9 +197,9 @@ void Game::renderGraphics() {
     if (status == 0) {
         graphics.prepareScene(menu);
 
-        graphics.renderTexture(playText, 336, 428);
+        graphics.renderTexture(playText, 332, 428);
         graphics.renderTexture(guideText, 122, 434);
-        graphics.renderTexture(exitText, 598, 434);
+        graphics.renderTexture(exitText, 610, 434);
 
         graphics.presentScene();
     }
@@ -274,7 +274,7 @@ void Game::running() {
     frameTime = SDL_GetTicks() - frameStart;
     frameTime = frameStart;
 
-    tiles = loadTiles(level);
+    tiles = loadTiles(tiles, level);
 
     static bool playedAgain = false;
     static bool musicPlayed = false;

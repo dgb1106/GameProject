@@ -16,6 +16,9 @@ void Graphics::init() {
     window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if (window == nullptr) logErrorAndExit("Create Window", SDL_GetError());
 
+    windowIcon = IMG_Load(WINDOW_ICON);
+    SDL_SetWindowIcon(window, windowIcon);
+
     if (!IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG)) logErrorAndExit("SDL_image error:", IMG_GetError());
 
     renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
@@ -90,5 +93,7 @@ void Graphics::quit() {
 
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
+    SDL_FreeSurface(windowIcon);
+
     SDL_Quit();
 }
