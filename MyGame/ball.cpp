@@ -103,6 +103,8 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
 
         angle = atan2(dy, dx);
 
+        arrow.setPosition(getPosition().x + BALL_SIZE/2, getPosition().y - 2);
+
         if (dx < 0 && dy < 0) {
             directionX = 1;
             directionY = 1;
@@ -127,7 +129,7 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
         }
 
     } else {
-
+        arrow.setPosition(-100, -100);
         moving = false;
         played = false;
         setPosition(getPosition().x + velocity.x, getPosition().y + velocity.y);

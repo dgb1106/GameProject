@@ -2,6 +2,7 @@
 #define _GRAPHICS__H
 
 #include <iostream>
+#include <cmath>
 #include <SDL.h>
 #include <SDL_image.h>
 #include "defs.h"
@@ -25,6 +26,8 @@ struct Graphics
     SDL_Texture* loadTexture(const char* filename);
 
     void renderTexture(SDL_Texture* texture, int x, int y);
+
+    void renderTexture(SDL_Texture* texture, int x, int y, double angle);
 
     SDL_Texture* renderText(const char* text, TTF_Font* font, SDL_Color color);
 

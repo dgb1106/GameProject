@@ -7,14 +7,23 @@
 
 void Game::initializeGraphics() {
     graphics.init();
+
+    menu = graphics.loadTexture(MENU_IMG);
     background = graphics.loadTexture(BACKGROUND_IMG);
+    complete = graphics.loadTexture(COMPLETE_IMG);
+
     ball_img = graphics.loadTexture(BALL_IMG);
     paint_img = graphics.loadTexture(PAINT_IMG);
     hole_img = graphics.loadTexture(HOLE_IMG);
+    arrow_img = graphics.loadTexture(ARROW_IMG);
     tile64_img = graphics.loadTexture(TILE64_IMG);
     tile32_img = graphics.loadTexture(TILE32_IMG);
     tileHorizontal_img = graphics.loadTexture(TILEHORIZONTAL_IMG);
     tileVertical_img = graphics.loadTexture(TILEVERTICAL_IMG);
+
+    icon = IMG_Load(CURSOR_IMG);
+    cursor = SDL_CreateColorCursor(icon, 18, 100);
+    SDL_SetCursor(cursor);
 }
 
 void Game::initializeMusic() {
@@ -28,7 +37,15 @@ void Game::initializeMusic() {
 
 void Game::initializeFont() {
     initFont();
-    KaphFont = loadFont(FONT_KAPH, STROKES_SIZE);
+
+    KaphFont24 = loadFont(FONT_KAPH, STROKES_TEXT_SIZE);
+    KaphFont36 = loadFont(FONT_KAPH, PLAY_TEXT_SIZE);
+    CrocanteFont = loadFont(FONT_CROCANTE, STROKES_TEXT_SIZE);
+
+    playText = graphics.renderText("Play!", KaphFont36, WHITE_COLOR);
+    guideText = graphics.renderText("Guide", KaphFont24, WHITE_COLOR);
+    exitText = graphics.renderText("Exit", KaphFont24, WHITE_COLOR);
+    playAgainText = graphics.renderText("Play Again!", KaphFont24, WHITE_COLOR);
 }
 
 void Game::init() {
@@ -43,7 +60,7 @@ void Game::init() {
     frameStart = SDL_GetTicks();
 }
 
-void Game::handleEvents() {
+void Game::handleEvents(bool& playedAgain) {
     mousePressed = false;
 
     SDL_Event event;
@@ -61,6 +78,10 @@ void Game::handleEvents() {
                 && ball.getVelocity().x == 0 && ball.getVelocity().y == 0) {
                 mousePressed = true;
                 mouseDown = true;
+            }
+            if (status == 0) status = 1;
+            if (status == 2) {
+                playedAgain = true;
             }
             break;
         case SDL_MOUSEBUTTONUP:
@@ -173,30 +194,63 @@ void Game::loadLevel(int level) {
 }
 
 void Game::renderGraphics() {
-    graphics.prepareScene(background);
+    if (status == 0) {
+        graphics.prepareScene(menu);
 
-    SDL_Color BLACK_COLOR = {0, 0, 0, 255};
-    strokesText = graphics.renderText(getStrokesCount(), KaphFont, BLACK_COLOR);
-    graphics.renderTexture(strokesText, 20, 18);
-    levelText = graphics.renderText(getLevelCount(), KaphFont, BLACK_COLOR);
-    graphics.renderTexture(levelText, 20, 50);
+        graphics.renderTexture(playText, 336, 428);
+        graphics.renderTexture(guideText, 122, 434);
+        graphics.renderTexture(exitText, 598, 434);
 
-    graphics.renderTexture(hole_img, hole.getPosition().x, hole.getPosition().y);
-
-    graphics.renderTexture(paint_img, paint.getPosition().x - 4, paint.getPosition().y - 4);
-
-    for (Tile t : tiles) {
-        graphics.renderTexture(t.getTexture(), t.getPosition().x, t.getPosition().y);
+        graphics.presentScene();
     }
+    if (status == 1) {
+        graphics.prepareScene(background);
 
-    graphics.renderTexture(ball_img, ball.getPosition().x, ball.getPosition().y);
+        strokesText = graphics.renderText(getStrokesCount(), CrocanteFont, WHITE_COLOR);
+        graphics.renderTexture(strokesText, 30, 27);
 
-    graphics.presentScene();
+        levelText = graphics.renderText(getLevelCount(), CrocanteFont, WHITE_COLOR);
+        graphics.renderTexture(levelText, 30, 58);
+
+        graphics.renderTexture(hole_img, hole.getPosition().x, hole.getPosition().y);
+
+        graphics.renderTexture(paint_img, paint.getPosition().x - 4, paint.getPosition().y - 4);
+
+        for (Tile t : tiles) {
+            graphics.renderTexture(t.getTexture(), t.getPosition().x, t.getPosition().y);
+        }
+
+        graphics.renderTexture(arrow_img, ball.getArrowPosition().x, ball.getArrowPosition().y, ball.getAngle());
+
+        graphics.renderTexture(ball_img, ball.getPosition().x, ball.getPosition().y);
+
+        graphics.presentScene();
+    }
+    if (status == 2) {
+        graphics.prepareScene(complete);
+
+        lowestStrokesText = graphics.renderText(getLowestStrokes(), CrocanteFont, GOLD_COLOR);
+        graphics.renderTexture(lowestStrokesText, 275, 280);
+        graphics.renderTexture(playAgainText, 162, 414);
+        graphics.renderTexture(exitText, 510, 414);
+
+        graphics.presentScene();
+    }
 }
 
 const char* Game::getStrokesCount() {
     std::string s = "STROKES: ";
     s += std::to_string(strokes);
+    return s.c_str();
+}
+
+const char* Game::getLowestStrokes() {
+    std::string s = "LOWEST STROKES: ";
+    if (lowestStrokes < strokes) {
+        s += std::to_string(lowestStrokes);
+    } else {
+        s += std::to_string(strokes);
+    }
     return s.c_str();
 }
 
@@ -206,17 +260,32 @@ const char* Game::getLevelCount() {
     return s.c_str();
 }
 
+void Game::playAgain(bool& playedAgain, bool& musicPlayed) {
+    status = 1;
+    level = 1;
+    loadLevel(level);
+    strokes = 0;
+    ball.setWin(false);
+    musicPlayed = false;
+    playedAgain = false;
+}
+
 void Game::running() {
     frameTime = SDL_GetTicks() - frameStart;
     frameTime = frameStart;
 
     tiles = loadTiles(level);
 
-    handleEvents();
+    static bool playedAgain = false;
+    static bool musicPlayed = false;
+
+    handleEvents(playedAgain);
 
     ball.update(mouseDown, mousePressed, hole, tiles, hit_sound, bounce_sound, strokes);
 
     renderGraphics();
+
+    if (playedAgain) playAgain(playedAgain, musicPlayed);
 
     if (ball.getWinStatus() == true) {
         if (level <= 4) play(levelUp_sound);
@@ -225,12 +294,15 @@ void Game::running() {
         loadLevel(level);
     }
 
-    static bool played = false;
-
-    if (level > 5 && !played) {
+    if (level > 5 && !musicPlayed) {
+        status++;
         pauseMusic();
         play(finalWin_sound);
-        played = true;
+        musicPlayed = true;
+    }
+
+    if (level <= 5) {
+        play(bg_music);
     }
 
     if (frameDelay > frameTime) {
@@ -251,6 +323,8 @@ void Game::freeMemory() {
     paint_img = nullptr;
     SDL_DestroyTexture(hole_img);
     hole_img = nullptr;
+    SDL_DestroyTexture(arrow_img);
+    arrow_img = nullptr;
     SDL_DestroyTexture(tile32_img);
     tile32_img = nullptr;
     SDL_DestroyTexture(tile64_img);
@@ -259,6 +333,11 @@ void Game::freeMemory() {
     tileHorizontal_img = nullptr;
     SDL_DestroyTexture(tileVertical_img);
     tileVertical_img = nullptr;
+
+    SDL_FreeSurface(icon);
+    icon = nullptr;
+    SDL_FreeCursor(cursor);
+    cursor = nullptr;
 
     Mix_FreeMusic(bg_music);
     bg_music = nullptr;
@@ -273,5 +352,19 @@ void Game::freeMemory() {
 
     SDL_DestroyTexture(strokesText);
     strokesText = nullptr;
-    TTF_CloseFont(KaphFont);
+    SDL_DestroyTexture(levelText);
+    levelText = nullptr;
+    SDL_DestroyTexture(lowestStrokesText);
+    lowestStrokesText = nullptr;
+    SDL_DestroyTexture(playText);
+    playText = nullptr;
+    SDL_DestroyTexture(exitText);
+    exitText = nullptr;
+    SDL_DestroyTexture(guideText);
+    guideText = nullptr;
+    SDL_DestroyTexture(playAgainText);
+    playAgainText = nullptr;
+    TTF_CloseFont(KaphFont24);
+    TTF_CloseFont(KaphFont36);
+    TTF_CloseFont(CrocanteFont);
 }

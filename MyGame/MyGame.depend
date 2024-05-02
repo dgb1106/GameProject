@@ -22,10 +22,11 @@
 	"tile.h"
 	"music.h"
 
-1714460358 c:\users\duong\documents\gameproject\mygame\defs.h
+1714636368 c:\users\duong\documents\gameproject\mygame\defs.h
 
-1714459519 c:\users\duong\documents\gameproject\mygame\graphics.h
+1714627792 c:\users\duong\documents\gameproject\mygame\graphics.h
 	<iostream>
+	<cmath>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
@@ -45,13 +46,14 @@
 	"graphics.h"
 	"background.h"
 
-1714459981 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
+1714635028 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"graphics.h"
+	"defs.h"
 
-1714460694 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
+1714634607 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -64,7 +66,7 @@
 	"tile.h"
 	"music.h"
 
-1714460426 c:\users\duong\documents\gameproject\mygame\ball.h
+1714618072 c:\users\duong\documents\gameproject\mygame\ball.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -109,7 +111,7 @@
 	"defs.h"
 	"graphics.h"
 
-1714461115 c:\users\duong\documents\gameproject\mygame\game.h
+1714637120 c:\users\duong\documents\gameproject\mygame\game.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -125,7 +127,7 @@
 	"tile.h"
 	"music.h"
 
-1714461837 source:c:\users\duong\documents\gameproject\mygame\game.cpp
+1714637102 source:c:\users\duong\documents\gameproject\mygame\game.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

@@ -21,14 +21,21 @@ struct Game
 {
     Graphics graphics;
 
+    SDL_Texture* menu;
     SDL_Texture* background;
+    SDL_Texture* complete;
+
     SDL_Texture* ball_img;
     SDL_Texture* paint_img;
     SDL_Texture* hole_img;
+    SDL_Texture* arrow_img;
     SDL_Texture* tile64_img;
     SDL_Texture* tile32_img;
     SDL_Texture* tileHorizontal_img;
     SDL_Texture* tileVertical_img;
+
+    SDL_Surface* icon;
+    SDL_Cursor* cursor;
 
     Mix_Music* bg_music;
     Mix_Chunk* hit_sound;
@@ -36,7 +43,9 @@ struct Game
     Mix_Chunk* levelUp_sound;
     Mix_Chunk* finalWin_sound;
 
-    TTF_Font* KaphFont;
+    TTF_Font* KaphFont24;
+    TTF_Font* KaphFont36;
+    TTF_Font* CrocanteFont;
 
     Ball ball;
     Object paint;
@@ -44,10 +53,20 @@ struct Game
 
     std::vector <Tile> tiles;
 
+    int status = 0;
+
+    SDL_Texture* playText;
+    SDL_Texture* guideText;
+    SDL_Texture* exitText;
+
     int level = 1;
     SDL_Texture* levelText;
     int strokes = 0;
     SDL_Texture* strokesText;
+    int lowestStrokes = 1000;
+    SDL_Texture* lowestStrokesText;
+
+    SDL_Texture* playAgainText;
 
     bool quit = false;
     bool mouseDown = false;
@@ -64,7 +83,7 @@ struct Game
 
     void init();
 
-    void handleEvents();
+    void handleEvents(bool& playedAgain);
 
     std::vector <Tile> loadTiles(int level);
 
@@ -74,7 +93,11 @@ struct Game
 
     const char* getStrokesCount();
 
+    const char* getLowestStrokes();
+
     const char* getLevelCount();
+
+    void playAgain(bool& playedAgain, bool& musicPlayed);
 
     void running();
 

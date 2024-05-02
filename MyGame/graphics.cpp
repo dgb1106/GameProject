@@ -3,6 +3,7 @@
 #include <SDL_image.h>
 
 #include "graphics.h"
+#include "defs.h"
 
 void logErrorAndExit(const char* msg, const char* error) {
     SDL_LogMessage(SDL_LOG_CATEGORY_APPLICATION, SDL_LOG_PRIORITY_ERROR, "%s: %s", msg, error);
@@ -55,6 +56,16 @@ void Graphics::renderTexture(SDL_Texture* texture, int x, int y) {
     SDL_QueryTexture(texture, NULL, NULL, &dest.w, &dest.h);
 
     SDL_RenderCopy(renderer, texture, NULL, &dest);
+}
+
+void Graphics::renderTexture(SDL_Texture* texture, int x, int y, double angle) {
+    SDL_Rect dest;
+    dest.x = x - 64;
+    dest.y = y;
+
+    SDL_QueryTexture(texture, nullptr, nullptr, &dest.w, &dest.h);
+
+    SDL_RenderCopyEx(renderer, texture, nullptr, &dest, angle * 180 / PI - 180, nullptr, SDL_FLIP_NONE);
 }
 
 SDL_Texture* Graphics::renderText(const char* text, TTF_Font* font, SDL_Color color) {

@@ -18,6 +18,10 @@ public:
 
     Ball(Vector _position, SDL_Texture* _texture);
 
+    Vector getArrowPosition() {
+        return arrow.getPosition();
+    }
+
     Vector getVelocity() {
         return velocity;
     }
@@ -28,6 +32,10 @@ public:
 
     Vector getFinalMousePosition() {
         return finalMousePosition;
+    }
+
+    double getAngle() {
+        return angle;
     }
 
     void setVelocity(double _x, double _y);
@@ -59,6 +67,8 @@ private:
     Vector finalMousePosition;
 
     double angle = 0;
+
+    Object arrow;
 
     bool moving = true;
 
