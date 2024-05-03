@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
     game.loadLevel(1);
 
     while (!quit) {
-        game.running();
+        game.running(quit);
     }
 
     game.freeMemory();

@@ -10,7 +10,11 @@ void Game::initializeGraphics() {
 
     menu = graphics.loadTexture(MENU_IMG);
     background = graphics.loadTexture(BACKGROUND_IMG);
-    complete = graphics.loadTexture(COMPLETE_IMG);
+    guide = graphics.loadTexture(GUIDE_IMG);
+    completed = graphics.loadTexture(COMPLETE_IMG);
+
+    backButton_White = graphics.loadTexture(BACKBUTTON_WHITE);
+    backButton_Gold = graphics.loadTexture(BACKBUTTON_GOLD);
 
     ball_img = graphics.loadTexture(BALL_IMG);
     paint_img = graphics.loadTexture(PAINT_IMG);
@@ -41,11 +45,7 @@ void Game::initializeFont() {
     KaphFont24 = loadFont(FONT_KAPH, STROKES_TEXT_SIZE);
     KaphFont36 = loadFont(FONT_KAPH, PLAY_TEXT_SIZE);
     CrocanteFont = loadFont(FONT_CROCANTE, STROKES_TEXT_SIZE);
-
-    playText = graphics.renderText("Play!", KaphFont36, WHITE_COLOR);
-    guideText = graphics.renderText("Guide", KaphFont24, WHITE_COLOR);
-    exitText = graphics.renderText("Exit", KaphFont24, WHITE_COLOR);
-    playAgainText = graphics.renderText("Play Again!", KaphFont24, WHITE_COLOR);
+    WigglyeFont = loadFont(FONT_WIGGLYE, TITLE_TEXT_SIZE);
 }
 
 void Game::init() {
@@ -60,7 +60,7 @@ void Game::init() {
     frameStart = SDL_GetTicks();
 }
 
-void Game::handleEvents(bool& playedAgain) {
+void Game::handleEvents(bool& playedAgain, bool& quit) {
     mousePressed = false;
 
     SDL_Event event;
@@ -79,9 +79,29 @@ void Game::handleEvents(bool& playedAgain) {
                 mousePressed = true;
                 mouseDown = true;
             }
-            if (status == 0) status = 1;
-            if (status == 2) {
-                playedAgain = true;
+            if (status == MENU_STATUS) {
+                if (mouseX >= 99 && mouseX <= 230 && mouseY >= 420 && mouseY <= 474) {
+                    status = GUIDE_STATUS;
+                }
+                if (mouseX >= 296 && mouseX <= 493 && mouseY >= 404 && mouseY <= 490) {
+                    status = PLAYING_STATUS;
+                }
+                if (mouseX >= 577 && mouseX <= 709 && mouseY >= 420 && mouseY <= 474) {
+                    quit = true;
+                }
+            }
+            if (status == GUIDE_STATUS) {
+                if (mouseX >= 84 && mouseX <= 116 && mouseY >= 70 && mouseY <= 102) {
+                    status = MENU_STATUS;
+                }
+            }
+            if (status == COMPLETED_STATUS) {
+                if (mouseX >= 159 && mouseX <= 352 && mouseY >= 401 && mouseY <= 455) {
+                    playedAgain = true;
+                }
+                if (mouseX >= 445 && mouseX <= 638 && mouseY >= 401 && mouseY <= 455) {
+                    quit = true;
+                }
             }
             break;
         case SDL_MOUSEBUTTONUP:
@@ -194,16 +214,50 @@ void Game::loadLevel(int level) {
 }
 
 void Game::renderGraphics() {
-    if (status == 0) {
+    if (status == MENU_STATUS) {
         graphics.prepareScene(menu);
 
+        int mouseX, mouseY;
+        SDL_GetMouseState(&mouseX, &mouseY);
+        SDL_Color color1 = WHITE_COLOR;
+        if (mouseX >= 296 && mouseX <= 493 && mouseY >= 404 && mouseY <= 490) {
+            color1 = GOLD_COLOR;
+        }
+        playText = graphics.renderText("Play!", KaphFont36, color1);
         graphics.renderTexture(playText, 332, 428);
-        graphics.renderTexture(guideText, 122, 434);
-        graphics.renderTexture(exitText, 610, 434);
+
+        SDL_Color color2 = WHITE_COLOR;
+        if (mouseX >= 99 && mouseX <= 230 && mouseY >= 420 && mouseY <= 474) {
+            color2 = GOLD_COLOR;
+        }
+        guideText = graphics.renderText("Guide", KaphFont24, color2);
+        graphics.renderTexture(guideText, 120, 434);
+
+        SDL_Color color3 = WHITE_COLOR;
+        if (mouseX >= 577 && mouseX <= 709 && mouseY >= 420 && mouseY <= 474) {
+            color3 = GOLD_COLOR;
+        }
+        exitText = graphics.renderText("Exit", KaphFont24, color3);
+        graphics.renderTexture(exitText, 612, 434);
 
         graphics.presentScene();
     }
-    if (status == 1) {
+
+    if (status == GUIDE_STATUS) {
+        graphics.prepareScene(guide);
+
+        int mouseX, mouseY;
+        SDL_GetMouseState(&mouseX, &mouseY);
+        if (mouseX >= 84 && mouseX <= 116 && mouseY >= 70 && mouseY <= 102) {
+            graphics.renderTexture(backButton_Gold, 84, 70);
+        } else {
+            graphics.renderTexture(backButton_White, 84, 70);
+        }
+
+        graphics.presentScene();
+    }
+
+    if (status == PLAYING_STATUS) {
         graphics.prepareScene(background);
 
         strokesText = graphics.renderText(getStrokesCount(), CrocanteFont, WHITE_COLOR);
@@ -226,12 +280,27 @@ void Game::renderGraphics() {
 
         graphics.presentScene();
     }
-    if (status == 2) {
-        graphics.prepareScene(complete);
+
+    if (status == COMPLETED_STATUS) {
+        graphics.prepareScene(completed);
 
         lowestStrokesText = graphics.renderText(getLowestStrokes(), CrocanteFont, GOLD_COLOR);
         graphics.renderTexture(lowestStrokesText, 275, 280);
+
+        int mouseX, mouseY;
+        SDL_GetMouseState(&mouseX, &mouseY);
+        SDL_Color color1 = WHITE_COLOR;
+        if (mouseX >= 159 && mouseX <= 352 && mouseY >= 401 && mouseY <= 455) {
+            color1 = BRIGHT_PINK_COLOR;
+        }
+        playAgainText = graphics.renderText("Play Again!", KaphFont24, color1);
         graphics.renderTexture(playAgainText, 162, 414);
+
+        SDL_Color color2 = WHITE_COLOR;
+        if (mouseX >= 445 && mouseX <= 638 && mouseY >= 401 && mouseY <= 455) {
+            color2 = BRIGHT_PINK_COLOR;
+        }
+        exitText = graphics.renderText("Exit", KaphFont24, color2);
         graphics.renderTexture(exitText, 510, 414);
 
         graphics.presentScene();
@@ -261,7 +330,7 @@ const char* Game::getLevelCount() {
 }
 
 void Game::playAgain(bool& playedAgain, bool& musicPlayed) {
-    status = 1;
+    status = PLAYING_STATUS;
     level = 1;
     loadLevel(level);
     strokes = 0;
@@ -270,7 +339,7 @@ void Game::playAgain(bool& playedAgain, bool& musicPlayed) {
     playedAgain = false;
 }
 
-void Game::running() {
+void Game::running(bool& quit) {
     frameTime = SDL_GetTicks() - frameStart;
     frameTime = frameStart;
 
@@ -279,7 +348,7 @@ void Game::running() {
     static bool playedAgain = false;
     static bool musicPlayed = false;
 
-    handleEvents(playedAgain);
+    handleEvents(playedAgain, quit);
 
     ball.update(mouseDown, mousePressed, hole, tiles, hit_sound, bounce_sound, strokes);
 
@@ -295,7 +364,7 @@ void Game::running() {
     }
 
     if (level > 5 && !musicPlayed) {
-        status++;
+        status = COMPLETED_STATUS;
         pauseMusic();
         play(finalWin_sound);
         musicPlayed = true;
@@ -317,6 +386,18 @@ void Game::freeMemory() {
 
     SDL_DestroyTexture(background);
     background = nullptr;
+    SDL_DestroyTexture(menu);
+    menu = nullptr;
+    SDL_DestroyTexture(guide);
+    guide = nullptr;
+    SDL_DestroyTexture(backButton_Gold);
+    backButton_Gold = nullptr;
+    SDL_DestroyTexture(backButton_White);
+    backButton_White = nullptr;
+    SDL_DestroyTexture(completed);
+    completed = nullptr;
+    SDL_DestroyTexture(gameOver);
+    gameOver = nullptr;
     SDL_DestroyTexture(ball_img);
     ball_img = nullptr;
     SDL_DestroyTexture(paint_img);
@@ -333,6 +414,10 @@ void Game::freeMemory() {
     tileHorizontal_img = nullptr;
     SDL_DestroyTexture(tileVertical_img);
     tileVertical_img = nullptr;
+    SDL_DestroyTexture(slime_img);
+    slime_img = nullptr;
+    SDL_DestroyTexture(cactus_img);
+    cactus_img = nullptr;
 
     SDL_FreeSurface(icon);
     icon = nullptr;
@@ -367,4 +452,5 @@ void Game::freeMemory() {
     TTF_CloseFont(KaphFont24);
     TTF_CloseFont(KaphFont36);
     TTF_CloseFont(CrocanteFont);
+    TTF_CloseFont(WigglyeFont);
 }

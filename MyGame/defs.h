@@ -9,14 +9,25 @@ const int SCREEN_HEIGHT = 600;
 const SDL_Color BLACK_COLOR = {0, 0, 0, 255};
 const SDL_Color WHITE_COLOR = {255, 255, 255, 255};
 const SDL_Color GOLD_COLOR = {255, 215, 0, 255};
+const SDL_Color BRIGHT_PINK_COLOR = {241, 65, 116, 255};
 
 const double PI = 3.1415;
 const int FPS = 60;
 const int frameDelay = 1000 / FPS;
 
+const int GAMEOVER_STATUS = -1;
+const int MENU_STATUS = 0;
+const int PLAYING_STATUS = 1;
+const int COMPLETED_STATUS = 2;
+const int GUIDE_STATUS = 3;
+
 #define MENU_IMG "assets\\images\\menu.png"
+#define GUIDE_IMG "assets\\images\\guide.png"
 #define BACKGROUND_IMG "assets\\images\\Background.png"
 #define COMPLETE_IMG "assets\\images\\Complete.png"
+
+#define BACKBUTTON_WHITE "assets\\images\\BackButton_White.png"
+#define BACKBUTTON_GOLD "assets\\images\\BackButton_Gold.png"
 
 #define BALL_IMG "assets\\images\\Ball.png"
 #define HOLE_IMG "assets\\images\\Hole.png"
@@ -38,8 +49,10 @@ const int frameDelay = 1000 / FPS;
 
 #define FONT_KAPH "assets\\fonts\\Kaph-Regular.ttf"
 #define FONT_CROCANTE "assets\\fonts\\iciel-crocante.ttf"
+#define FONT_WIGGLYE "assets\\fonts\\Wigglye.ttf"
 const int STROKES_TEXT_SIZE = 24;
 const int PLAY_TEXT_SIZE = 36;
+const int TITLE_TEXT_SIZE = 116;
 
 const int BORDER_SIZE_HORIZONTAL = 16;
 const int BORDER_SIZE_VERTICAL = 13;

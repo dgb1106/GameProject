@@ -23,7 +23,9 @@ struct Game
 
     SDL_Texture* menu;
     SDL_Texture* background;
-    SDL_Texture* complete;
+    SDL_Texture* guide;
+    SDL_Texture* completed;
+    SDL_Texture* gameOver;
 
     SDL_Texture* ball_img;
     SDL_Texture* paint_img;
@@ -33,6 +35,8 @@ struct Game
     SDL_Texture* tile32_img;
     SDL_Texture* tileHorizontal_img;
     SDL_Texture* tileVertical_img;
+    SDL_Texture* slime_img;
+    SDL_Texture* cactus_img;
 
     SDL_Surface* icon;
     SDL_Cursor* cursor;
@@ -46,6 +50,7 @@ struct Game
     TTF_Font* KaphFont24;
     TTF_Font* KaphFont36;
     TTF_Font* CrocanteFont;
+    TTF_Font* WigglyeFont;
 
     Ball ball;
     Object paint;
@@ -53,8 +58,10 @@ struct Game
 
     std::vector <Tile> tiles;
 
-    int status = 0;
+    int status = MENU_STATUS;
 
+    SDL_Texture* backButton_White;
+    SDL_Texture* backButton_Gold;
     SDL_Texture* playText;
     SDL_Texture* guideText;
     SDL_Texture* exitText;
@@ -83,7 +90,7 @@ struct Game
 
     void init();
 
-    void handleEvents(bool& playedAgain);
+    void handleEvents(bool& playedAgain, bool& quit);
 
     std::vector <Tile> loadTiles(std::vector <Tile>& tiles, int level);
 
@@ -99,7 +106,7 @@ struct Game
 
     void playAgain(bool& playedAgain, bool& musicPlayed);
 
-    void running();
+    void running(bool& quit);
 
     void freeMemory();
 };
