@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1714843234 source:c:\users\duong\documents\gameproject\bai11_collision\main.cpp
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+	"graphics.h"
+	"defs.h"
+	"game.h"
+
+1714843234 c:\users\duong\documents\gameproject\bai11_collision\graphics.h
+	<SDL.h>
+	<SDL_image.h>
+	"defs.h"
+
+1714843234 c:\users\duong\documents\gameproject\bai11_collision\defs.h
+
+1714843234 c:\users\duong\documents\gameproject\bai11_collision\game.h
+
