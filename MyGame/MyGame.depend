@@ -46,7 +46,7 @@
 	"graphics.h"
 	"background.h"
 
-1714641043 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
+1714841042 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -127,7 +127,7 @@
 	"tile.h"
 	"music.h"
 
-1714754846 source:c:\users\duong\documents\gameproject\mygame\game.cpp
+1714841466 source:c:\users\duong\documents\gameproject\mygame\game.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

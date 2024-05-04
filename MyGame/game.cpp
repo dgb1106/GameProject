@@ -225,6 +225,7 @@ void Game::renderGraphics() {
         }
         playText = graphics.renderText("Play!", KaphFont36, color1);
         graphics.renderTexture(playText, 332, 428);
+        SDL_DestroyTexture(playText);
 
         SDL_Color color2 = WHITE_COLOR;
         if (mouseX >= 99 && mouseX <= 230 && mouseY >= 420 && mouseY <= 474) {
@@ -232,6 +233,7 @@ void Game::renderGraphics() {
         }
         guideText = graphics.renderText("Guide", KaphFont24, color2);
         graphics.renderTexture(guideText, 120, 434);
+        SDL_DestroyTexture(guideText);
 
         SDL_Color color3 = WHITE_COLOR;
         if (mouseX >= 577 && mouseX <= 709 && mouseY >= 420 && mouseY <= 474) {
@@ -239,6 +241,7 @@ void Game::renderGraphics() {
         }
         exitText = graphics.renderText("Exit", KaphFont24, color3);
         graphics.renderTexture(exitText, 612, 434);
+        SDL_DestroyTexture(exitText);
 
         graphics.presentScene();
     }
@@ -262,9 +265,11 @@ void Game::renderGraphics() {
 
         strokesText = graphics.renderText(getStrokesCount(), CrocanteFont, WHITE_COLOR);
         graphics.renderTexture(strokesText, 30, 27);
+        SDL_DestroyTexture(strokesText);
 
         levelText = graphics.renderText(getLevelCount(), CrocanteFont, WHITE_COLOR);
         graphics.renderTexture(levelText, 30, 58);
+        SDL_DestroyTexture(levelText);
 
         graphics.renderTexture(hole_img, hole.getPosition().x, hole.getPosition().y);
 
@@ -286,6 +291,7 @@ void Game::renderGraphics() {
 
         lowestStrokesText = graphics.renderText(getLowestStrokes(), CrocanteFont, GOLD_COLOR);
         graphics.renderTexture(lowestStrokesText, 275, 280);
+        SDL_DestroyTexture(lowestStrokesText);
 
         int mouseX, mouseY;
         SDL_GetMouseState(&mouseX, &mouseY);
@@ -295,6 +301,7 @@ void Game::renderGraphics() {
         }
         playAgainText = graphics.renderText("Play Again!", KaphFont24, color1);
         graphics.renderTexture(playAgainText, 162, 414);
+        SDL_DestroyTexture(playAgainText);
 
         SDL_Color color2 = WHITE_COLOR;
         if (mouseX >= 445 && mouseX <= 638 && mouseY >= 401 && mouseY <= 455) {
@@ -302,6 +309,7 @@ void Game::renderGraphics() {
         }
         exitText = graphics.renderText("Exit", KaphFont24, color2);
         graphics.renderTexture(exitText, 510, 414);
+        SDL_DestroyTexture(exitText);
 
         graphics.presentScene();
     }
