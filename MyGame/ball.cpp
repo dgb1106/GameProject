@@ -32,9 +32,31 @@ void Ball::setFinalMousePosition(double _x, double _y) {
     finalMousePosition.y = _y;
 }
 
-void Ball::checkCollision(std::vector <Tile> tiles, Mix_Chunk* bounce) {
+void Ball::checkCollision(std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, Mix_Chunk* bounce) {
     static bool xCollided = false;
     static bool yCollided = false;
+
+    for (Tile c : cactus) {
+        if (getPosition().x + BALL_SIZE >= c.getPosition().x && getPosition().x <= c.getPosition().x + c.getTextureSize().w && getPosition().y + BALL_SIZE >= c.getPosition().y && getPosition().y <= c.getPosition().y + c.getTextureSize().h) {
+            gameOver = true;
+            return;
+        }
+        if (getPosition().x + BALL_SIZE >= c.getPosition().x && getPosition().x <= c.getPosition().x + c.getTextureSize().w && getPosition().y + BALL_SIZE >= c.getPosition().y && getPosition().y <= c.getPosition().y + c.getTextureSize().h) {
+            gameOver = true;
+            return;
+        }
+    }
+
+    for (Tile s : slime) {
+        if (getPosition().x + BALL_SIZE >= s.getPosition().x && getPosition().x <= s.getPosition().x + s.getTextureSize().w && getPosition().y + BALL_SIZE >= s.getPosition().y && getPosition().y <= s.getPosition().y + s.getTextureSize().h) {
+            velocity.x -= velocity.x / 10;
+            velocity.y -= velocity.y / 10;
+        }
+        if (getPosition().x + BALL_SIZE >= s.getPosition().x && getPosition().x <= s.getPosition().x + s.getTextureSize().w && getPosition().y + BALL_SIZE >= s.getPosition().y && getPosition().y <= s.getPosition().y + s.getTextureSize().h) {
+            velocity.x -= velocity.x / 10;
+            velocity.y -= velocity.y / 10;
+        }
+    }
 
     if (getPosition().x + BALL_SIZE >= SCREEN_WIDTH - BORDER_SIZE_HORIZONTAL || getPosition().x <= BORDER_SIZE_HORIZONTAL) {
         if (!xCollided) {
@@ -81,7 +103,7 @@ bool Ball::checkWin(Hole hole) {
     return false;
 }
 
-void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, Mix_Chunk* hit, Mix_Chunk* bounce, int& strokes) {
+void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, Mix_Chunk* hit, Mix_Chunk* bounce, int& strokes) {
     if (mousePressed && moving) {
         int mouseX = 0;
         int mouseY = 0;
@@ -143,7 +165,8 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
             setVelocity(0,0);
             moving = true;
         }
-        checkCollision(tiles, bounce);
+        checkCollision(tiles, cactus, slime, bounce);
+        if (gameOver == true) return;
     }
     bool check = checkWin(hole);
     if (check == true) {

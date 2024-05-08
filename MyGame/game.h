@@ -46,6 +46,7 @@ struct Game
     Mix_Chunk* bounce_sound;
     Mix_Chunk* levelUp_sound;
     Mix_Chunk* finalWin_sound;
+    Mix_Chunk* gameOver_sound;
 
     TTF_Font* KaphFont24;
     TTF_Font* KaphFont36;
@@ -57,6 +58,8 @@ struct Game
     Hole hole;
 
     std::vector <Tile> tiles;
+    std::vector <Tile> cactus;
+    std::vector <Tile> slime;
 
     int status = MENU_STATUS;
 
@@ -94,6 +97,10 @@ struct Game
 
     std::vector <Tile> loadTiles(std::vector <Tile>& tiles, int level);
 
+    std::vector <Tile> loadCactus(std::vector <Tile>& cactus, int level);
+
+    std::vector <Tile> loadSlime(std::vector <Tile>& slime, int level);
+
     void loadLevel(int level);
 
     void renderGraphics();
@@ -103,6 +110,8 @@ struct Game
     const char* getLowestStrokes();
 
     const char* getLevelCount();
+
+    const char* getLastestLevelCount();
 
     void playAgain(bool& playedAgain, bool& musicPlayed);
 

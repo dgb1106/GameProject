@@ -20,6 +20,8 @@ void play(Mix_Chunk* chunk);
 
 void pauseMusic();
 
+void resumeMusic();
+
 void quitMusic();
 
 #endif // _MUSIC__H

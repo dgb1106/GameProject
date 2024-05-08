@@ -44,9 +44,9 @@ public:
 
     void setFinalMousePosition(double _x, double _y);
 
-    void update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, Mix_Chunk* hit, Mix_Chunk* bounce, int& strokes);
+    void update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, Mix_Chunk* hit, Mix_Chunk* bounce, int& strokes);
 
-    void checkCollision(std::vector <Tile> tiles, Mix_Chunk* bounce);
+    void checkCollision(std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, Mix_Chunk* bounce);
 
     bool checkWin(Hole hole);
 
@@ -56,6 +56,14 @@ public:
 
     bool getWinStatus() {
         return win;
+    }
+
+    void setGameOverStatus(bool _status) {
+        gameOver = _status;
+    }
+
+    bool getGameOverStatus() {
+        return gameOver;
     }
 
 private:
@@ -76,5 +84,6 @@ private:
     int directionY = 1;
 
     bool win = false;
+    bool gameOver = false;
 };
 #endif // _BALL__H

@@ -25,6 +25,7 @@ const int GUIDE_STATUS = 3;
 #define GUIDE_IMG "assets\\images\\guide.png"
 #define BACKGROUND_IMG "assets\\images\\Background.png"
 #define COMPLETE_IMG "assets\\images\\Complete.png"
+#define GAMEOVER_IMG "assets\\images\\GameOver.png"
 
 #define BACKBUTTON_WHITE "assets\\images\\BackButton_White.png"
 #define BACKBUTTON_GOLD "assets\\images\\BackButton_Gold.png"
@@ -37,7 +38,8 @@ const int GUIDE_STATUS = 3;
 #define TILE32_IMG "assets\\images\\Tile32.png"
 #define TILEHORIZONTAL_IMG "assets\\images\\TileHorizontal.png"
 #define TILEVERTICAL_IMG "assets\\images\\TileVertical.png"
-#define SPIKE_IMG "assets\\images\\spike.png"
+#define CACTUS_IMG "assets\\images\\cactus.png"
+#define SLIME_IMG "assets\\images\\slime.png"
 
 #define CURSOR_IMG "assets\\images\\cursorRacket.png"
 
@@ -46,6 +48,7 @@ const int GUIDE_STATUS = 3;
 #define BOUNCE_SOUND "assets\\sounds\\Bounce.wav"
 #define LEVELUP_SOUND "assets\\sounds\\LevelUp.wav"
 #define FINALWIN_SOUND "assets\\sounds\\FinalWin.wav"
+#define GAMEOVER_SOUND "assets\\sounds\\GameOver.wav"
 
 #define FONT_KAPH "assets\\fonts\\Kaph-Regular.ttf"
 #define FONT_CROCANTE "assets\\fonts\\iciel-crocante.ttf"

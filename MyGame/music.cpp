@@ -35,6 +35,7 @@ void play(Mix_Music* music) {
 }
 
 void play(Mix_Chunk* chunk) {
+    Mix_VolumeChunk(chunk, MIX_MAX_VOLUME / 3);
     if (chunk != nullptr) {
         Mix_PlayChannel(-1, chunk, 0);
     }
@@ -42,6 +43,10 @@ void play(Mix_Chunk* chunk) {
 
 void pauseMusic() {
     Mix_PauseMusic();
+}
+
+void resumeMusic() {
+    Mix_ResumeMusic();
 }
 
 void quitMusic() {

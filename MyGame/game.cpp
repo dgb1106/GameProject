@@ -12,6 +12,7 @@ void Game::initializeGraphics() {
     background = graphics.loadTexture(BACKGROUND_IMG);
     guide = graphics.loadTexture(GUIDE_IMG);
     completed = graphics.loadTexture(COMPLETE_IMG);
+    gameOver = graphics.loadTexture(GAMEOVER_IMG);
 
     backButton_White = graphics.loadTexture(BACKBUTTON_WHITE);
     backButton_Gold = graphics.loadTexture(BACKBUTTON_GOLD);
@@ -24,6 +25,8 @@ void Game::initializeGraphics() {
     tile32_img = graphics.loadTexture(TILE32_IMG);
     tileHorizontal_img = graphics.loadTexture(TILEHORIZONTAL_IMG);
     tileVertical_img = graphics.loadTexture(TILEVERTICAL_IMG);
+    cactus_img = graphics.loadTexture(CACTUS_IMG);
+    slime_img = graphics.loadTexture(SLIME_IMG);
 
     icon = IMG_Load(CURSOR_IMG);
     cursor = SDL_CreateColorCursor(icon, 18, 100);
@@ -37,6 +40,7 @@ void Game::initializeMusic() {
     bounce_sound = loadSound(BOUNCE_SOUND);
     levelUp_sound = loadSound(LEVELUP_SOUND);
     finalWin_sound = loadSound(FINALWIN_SOUND);
+    gameOver_sound = loadSound(GAMEOVER_SOUND);
 }
 
 void Game::initializeFont() {
@@ -95,6 +99,14 @@ void Game::handleEvents(bool& playedAgain, bool& quit) {
                     status = MENU_STATUS;
                 }
             }
+            if (status == GAMEOVER_STATUS) {
+                if (mouseX >= 159 && mouseX <= 352 && mouseY >= 401 && mouseY <= 455) {
+                    playedAgain = true;
+                }
+                if (mouseX >= 445 && mouseX <= 638 && mouseY >= 401 && mouseY <= 455) {
+                    quit = true;
+                }
+            }
             if (status == COMPLETED_STATUS) {
                 if (mouseX >= 159 && mouseX <= 352 && mouseY >= 401 && mouseY <= 455) {
                     playedAgain = true;
@@ -141,7 +153,7 @@ std::vector <Tile> Game::loadTiles(std::vector <Tile>& tiles, int level) {
     case 4:
         tiles.push_back(Tile(Vector(272, 14), tile64_img));
         tiles.push_back(Tile(Vector(208, 77), tileVertical_img));
-        tiles.push_back(Tile(Vector(400, 172), tileHorizontal_img));
+        //tiles.push_back(Tile(Vector(400, 172), tileHorizontal_img));
         tiles.push_back(Tile(Vector(623, 77), tileVertical_img));
         tiles.push_back(Tile(Vector(208, 205), tileHorizontal_img));
         tiles.push_back(Tile(Vector(591, 269), tile32_img));
@@ -160,22 +172,68 @@ std::vector <Tile> Game::loadTiles(std::vector <Tile>& tiles, int level) {
         tiles.push_back(Tile(Vector(592, 46), tile32_img));
         tiles.push_back(Tile(Vector(655, 109), tile64_img));
         tiles.push_back(Tile(Vector(495, 141), tile64_img));
-        tiles.push_back(Tile(Vector(368, 173), tile32_img));
+        //tiles.push_back(Tile(Vector(368, 173), tile32_img));
         tiles.push_back(Tile(Vector(241, 141), tileVertical_img));
-        tiles.push_back(Tile(Vector(112, 141), tileVertical_img));
+        //tiles.push_back(Tile(Vector(112, 141), tileVertical_img));
         tiles.push_back(Tile(Vector(241, 269), tileVertical_img));
         tiles.push_back(Tile(Vector(431, 269), tileHorizontal_img));
         tiles.push_back(Tile(Vector(655, 429), tile64_img));
         tiles.push_back(Tile(Vector(495, 332), tileVertical_img));
         tiles.push_back(Tile(Vector(304, 396), tileHorizontal_img));
-        tiles.push_back(Tile(Vector(117, 396), tile64_img));
-        tiles.push_back(Tile(Vector(21, 396), tile32_img));
+        tiles.push_back(Tile(Vector(112, 396), tile64_img));
+        tiles.push_back(Tile(Vector(18, 396), tile32_img));
         tiles.push_back(Tile(Vector(18, 522), tile64_img));
-        tiles.push_back(Tile(Vector(117, 522), tile32_img));
+        tiles.push_back(Tile(Vector(112, 522), tile32_img));
         tiles.push_back(Tile(Vector(495, 460), tileVertical_img));
         break;
     }
     return tiles;
+}
+
+std::vector <Tile> Game::loadCactus(std::vector <Tile>& cactus, int level) {
+    cactus.clear();
+
+    switch (level) {
+    case 4:
+        cactus.push_back(Tile(Vector(81, 396), cactus_img));
+        cactus.push_back(Tile(Vector(464, 172), cactus_img));
+        break;
+    case 5:
+        cactus.push_back(Tile(Vector(112, 173), cactus_img));
+        cactus.push_back(Tile(Vector(337, 142), cactus_img));
+        cactus.push_back(Tile(Vector(432, 523), cactus_img));
+        break;
+    }
+
+    return cactus;
+}
+
+std::vector <Tile> Game::loadSlime(std::vector <Tile>& slime, int level) {
+    slime.clear();
+
+    switch (level) {
+    case 2:
+        slime.push_back(Tile(Vector(273, 46), slime_img));
+        slime.push_back(Tile(Vector(464, 46), slime_img));
+        slime.push_back(Tile(Vector(273, 493), slime_img));
+        slime.push_back(Tile(Vector(464, 493), slime_img));
+        break;
+    case 3:
+        slime.push_back(Tile(Vector(209, 333), slime_img));
+        slime.push_back(Tile(Vector(400, 174), slime_img));
+        slime.push_back(Tile(Vector(400, 14), slime_img));
+        slime.push_back(Tile(Vector(464, 523), slime_img));
+        break;
+    case 4:
+        slime.push_back(Tile(Vector(528, 397), slime_img));
+        break;
+    case 5:
+        slime.push_back(Tile(Vector(496, 206), slime_img));
+        slime.push_back(Tile(Vector(432, 397), slime_img));
+        break;
+    }
+
+    return slime;
 }
 
 void Game::loadLevel(int level) {
@@ -183,6 +241,8 @@ void Game::loadLevel(int level) {
     ball.setWin(false);
 
     tiles = loadTiles(tiles, level);
+    cactus = loadCactus(cactus, level);
+    slime = loadSlime(slime, level);
 
     switch (level) {
     case 1:
@@ -279,9 +339,45 @@ void Game::renderGraphics() {
             graphics.renderTexture(t.getTexture(), t.getPosition().x, t.getPosition().y);
         }
 
+        for (Tile c : cactus) {
+            graphics.renderTexture(c.getTexture(), c.getPosition().x, c.getPosition().y);
+        }
+
+        for (Tile s : slime) {
+            graphics.renderTexture(s.getTexture(), s.getPosition().x, s.getPosition().y);
+        }
+
         graphics.renderTexture(arrow_img, ball.getArrowPosition().x, ball.getArrowPosition().y, ball.getAngle());
 
         graphics.renderTexture(ball_img, ball.getPosition().x, ball.getPosition().y);
+
+        graphics.presentScene();
+    }
+
+    if (status == GAMEOVER_STATUS) {
+        graphics.prepareScene(gameOver);
+
+        SDL_Texture* lastestLevelText = graphics.renderText(getLastestLevelCount(), CrocanteFont, GOLD_COLOR);
+        graphics.renderTexture(lastestLevelText, 300, 280);
+        SDL_DestroyTexture(lastestLevelText);
+
+        int mouseX, mouseY;
+        SDL_GetMouseState(&mouseX, &mouseY);
+        SDL_Color color1 = WHITE_COLOR;
+        if (mouseX >= 159 && mouseX <= 352 && mouseY >= 401 && mouseY <= 455) {
+            color1 = BRIGHT_PINK_COLOR;
+        }
+        playAgainText = graphics.renderText("Play Again!", KaphFont24, color1);
+        graphics.renderTexture(playAgainText, 162, 414);
+        SDL_DestroyTexture(playAgainText);
+
+        SDL_Color color2 = WHITE_COLOR;
+        if (mouseX >= 445 && mouseX <= 638 && mouseY >= 401 && mouseY <= 455) {
+            color2 = BRIGHT_PINK_COLOR;
+        }
+        exitText = graphics.renderText("Exit", KaphFont24, color2);
+        graphics.renderTexture(exitText, 510, 414);
+        SDL_DestroyTexture(exitText);
 
         graphics.presentScene();
     }
@@ -337,12 +433,19 @@ const char* Game::getLevelCount() {
     return s.c_str();
 }
 
+const char* Game::getLastestLevelCount() {
+    std::string s = "LASTEST LEVEL: ";
+    s += std::to_string(level);
+    return s.c_str();
+}
+
 void Game::playAgain(bool& playedAgain, bool& musicPlayed) {
     status = PLAYING_STATUS;
     level = 1;
     loadLevel(level);
     strokes = 0;
     ball.setWin(false);
+    ball.setGameOverStatus(false);
     musicPlayed = false;
     playedAgain = false;
 }
@@ -351,18 +454,24 @@ void Game::running(bool& quit) {
     frameTime = SDL_GetTicks() - frameStart;
     frameTime = frameStart;
 
-    tiles = loadTiles(tiles, level);
-
     static bool playedAgain = false;
     static bool musicPlayed = false;
 
     handleEvents(playedAgain, quit);
 
-    ball.update(mouseDown, mousePressed, hole, tiles, hit_sound, bounce_sound, strokes);
+    ball.update(mouseDown, mousePressed, hole, tiles, cactus, slime, hit_sound, bounce_sound, strokes);
 
     renderGraphics();
 
     if (playedAgain) playAgain(playedAgain, musicPlayed);
+
+    if (ball.getGameOverStatus() == true && !musicPlayed) {
+        status = GAMEOVER_STATUS;
+        strokes = lowestStrokes;
+        pauseMusic();
+        play(gameOver_sound);
+        musicPlayed = true;
+    }
 
     if (ball.getWinStatus() == true) {
         if (level <= 4) play(levelUp_sound);
@@ -378,8 +487,8 @@ void Game::running(bool& quit) {
         musicPlayed = true;
     }
 
-    if (level <= 5) {
-        play(bg_music);
+    if (level <= 5 && ball.getGameOverStatus() == false) {
+        resumeMusic();
     }
 
     if (frameDelay > frameTime) {
