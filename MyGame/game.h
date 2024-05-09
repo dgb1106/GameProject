@@ -70,7 +70,7 @@ struct Game
     SDL_Texture* guideText;
     SDL_Texture* exitText;
 
-    int level = 4;
+    int level = 1;
     SDL_Texture* levelText;
     int strokes = 0;
     SDL_Texture* strokesText;
