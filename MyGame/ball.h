@@ -44,9 +44,9 @@ public:
 
     void setFinalMousePosition(double _x, double _y);
 
-    void update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, Mix_Chunk* hit, Mix_Chunk* bounce, int& strokes);
+    void update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, std::vector <Tile> movingTiles, Mix_Chunk* hit, Mix_Chunk* bounce, int& strokes);
 
-    void checkCollision(std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, Mix_Chunk* bounce);
+    void checkCollision(std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, std::vector <Tile> movingTiles, Mix_Chunk* bounce);
 
     bool checkWin(Hole hole);
 

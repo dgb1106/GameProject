@@ -176,7 +176,7 @@ std::vector <Tile> Game::loadTiles(std::vector <Tile>& tiles, int level) {
         tiles.push_back(Tile(Vector(241, 141), tileVertical_img));
         //tiles.push_back(Tile(Vector(112, 141), tileVertical_img));
         tiles.push_back(Tile(Vector(241, 269), tileVertical_img));
-        tiles.push_back(Tile(Vector(431, 269), tileHorizontal_img));
+        //tiles.push_back(Tile(Vector(431, 269), tileHorizontal_img));
         tiles.push_back(Tile(Vector(655, 429), tile64_img));
         tiles.push_back(Tile(Vector(495, 332), tileVertical_img));
         tiles.push_back(Tile(Vector(304, 396), tileHorizontal_img));
@@ -236,6 +236,14 @@ std::vector <Tile> Game::loadSlime(std::vector <Tile>& slime, int level) {
     return slime;
 }
 
+std::vector <Tile> Game::loadMovingTiles(std::vector <Tile>& movingTiles, int level) {
+    movingTiles.clear();
+    if (level == 5) {
+        movingTiles.push_back(Tile(Vector(432, 268), tileHorizontal_img));
+    }
+    return movingTiles;
+}
+
 void Game::loadLevel(int level) {
     ball.setVelocity(0, 0);
     ball.setWin(false);
@@ -243,6 +251,7 @@ void Game::loadLevel(int level) {
     tiles = loadTiles(tiles, level);
     cactus = loadCactus(cactus, level);
     slime = loadSlime(slime, level);
+    movingTiles = loadMovingTiles(movingTiles, level);
 
     switch (level) {
     case 1:
@@ -334,6 +343,13 @@ void Game::renderGraphics() {
         graphics.renderTexture(hole_img, hole.getPosition().x, hole.getPosition().y);
 
         graphics.renderTexture(paint_img, paint.getPosition().x - 4, paint.getPosition().y - 4);
+
+        if (level == 5) {
+            for (Tile m : movingTiles) {
+                m.moving();
+                graphics.renderTexture(tileHorizontal_img, m.getPosition().x, m.getPosition().y);
+            }
+        }
 
         for (Tile t : tiles) {
             graphics.renderTexture(t.getTexture(), t.getPosition().x, t.getPosition().y);
@@ -459,7 +475,7 @@ void Game::running(bool& quit) {
 
     handleEvents(playedAgain, quit);
 
-    ball.update(mouseDown, mousePressed, hole, tiles, cactus, slime, hit_sound, bounce_sound, strokes);
+    ball.update(mouseDown, mousePressed, hole, tiles, cactus, slime, movingTiles, hit_sound, bounce_sound, strokes);
 
     renderGraphics();
 

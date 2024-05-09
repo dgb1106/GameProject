@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
+#include <cmath>
 #include "defs.h"
 #include "object.h"
 
@@ -17,6 +18,12 @@ public:
 
     Tile(Vector _position, SDL_Texture* _texture) : Object(_position, _texture) {
         SDL_QueryTexture(_texture, nullptr, nullptr, &textureSize.w, &textureSize.h);
+    }
+
+    void moving() {
+        double time = SDL_GetTicks() / 1000.0f;
+        double newX = 432 + AMPLITUDE * sin(2 * M_PI * FREQUENCY * time);
+        setPosition((int)newX, getPosition().y);
     }
 
     SDL_Rect getTextureSize() {

@@ -63,4 +63,7 @@ const int BORDER_SIZE_VERTICAL = 13;
 const int BALL_SIZE = 24;
 const double FRICTION = 0.95;
 
+const double AMPLITUDE = 64.0;
+const double FREQUENCY = 0.5;
+
 #endif // _DEFS__H

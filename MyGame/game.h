@@ -60,6 +60,7 @@ struct Game
     std::vector <Tile> tiles;
     std::vector <Tile> cactus;
     std::vector <Tile> slime;
+    std::vector <Tile> movingTiles;
 
     int status = MENU_STATUS;
 
@@ -69,7 +70,7 @@ struct Game
     SDL_Texture* guideText;
     SDL_Texture* exitText;
 
-    int level = 1;
+    int level = 4;
     SDL_Texture* levelText;
     int strokes = 0;
     SDL_Texture* strokesText;
@@ -100,6 +101,8 @@ struct Game
     std::vector <Tile> loadCactus(std::vector <Tile>& cactus, int level);
 
     std::vector <Tile> loadSlime(std::vector <Tile>& slime, int level);
+
+    std::vector <Tile> loadMovingTiles(std::vector <Tile>& movingTiles, int level);
 
     void loadLevel(int level);
 
