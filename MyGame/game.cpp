@@ -181,6 +181,7 @@ std::vector <Tile> Game::loadTiles(std::vector <Tile>& tiles, int level) {
         tiles.push_back(Tile(Vector(495, 332), tileVertical_img));
         tiles.push_back(Tile(Vector(304, 396), tileHorizontal_img));
         tiles.push_back(Tile(Vector(112, 396), tile64_img));
+        tiles.push_back(Tile(Vector(176, 396), tileHorizontal_img));
         tiles.push_back(Tile(Vector(18, 396), tile32_img));
         tiles.push_back(Tile(Vector(18, 522), tile64_img));
         tiles.push_back(Tile(Vector(112, 522), tile32_img));
@@ -230,6 +231,7 @@ std::vector <Tile> Game::loadSlime(std::vector <Tile>& slime, int level) {
     case 5:
         slime.push_back(Tile(Vector(496, 206), slime_img));
         slime.push_back(Tile(Vector(432, 397), slime_img));
+        slime.push_back(Tile(Vector(82, 458), slime_img));
         break;
     }
 
