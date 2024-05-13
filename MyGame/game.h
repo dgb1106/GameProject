@@ -16,6 +16,7 @@
 #include "hole.h"
 #include "tile.h"
 #include "music.h"
+#include "timer.h"
 
 struct Game
 {
@@ -85,6 +86,9 @@ struct Game
 
     Uint32 frameStart;
     int frameTime;
+    Uint32 startTime;
+    int playingTime;
+    SDL_Texture* playingTimeText;
 
     void initializeGraphics();
 

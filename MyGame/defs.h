@@ -66,4 +66,6 @@ const double FRICTION = 0.95;
 const double AMPLITUDE = 64.0;
 const double FREQUENCY = 0.5;
 
+const double STANDARD_DURATION = 30.0;
+
 #endif // _DEFS__H

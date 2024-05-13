@@ -60,8 +60,6 @@ void Game::init() {
     ball.setTexture(ball_img);
     paint.setTexture(paint_img);
     hole.setTexture(hole_img);
-
-    frameStart = SDL_GetTicks();
 }
 
 void Game::handleEvents(bool& playedAgain, bool& quit) {
@@ -89,6 +87,7 @@ void Game::handleEvents(bool& playedAgain, bool& quit) {
                 }
                 if (mouseX >= 296 && mouseX <= 493 && mouseY >= 404 && mouseY <= 490) {
                     status = PLAYING_STATUS;
+                    startTime = SDL_GetTicks();
                 }
                 if (mouseX >= 577 && mouseX <= 709 && mouseY >= 420 && mouseY <= 474) {
                     quit = true;
@@ -102,6 +101,7 @@ void Game::handleEvents(bool& playedAgain, bool& quit) {
             if (status == GAMEOVER_STATUS) {
                 if (mouseX >= 159 && mouseX <= 352 && mouseY >= 401 && mouseY <= 455) {
                     playedAgain = true;
+                    startTime = SDL_GetTicks();
                 }
                 if (mouseX >= 445 && mouseX <= 638 && mouseY >= 401 && mouseY <= 455) {
                     quit = true;
@@ -110,6 +110,7 @@ void Game::handleEvents(bool& playedAgain, bool& quit) {
             if (status == COMPLETED_STATUS) {
                 if (mouseX >= 159 && mouseX <= 352 && mouseY >= 401 && mouseY <= 455) {
                     playedAgain = true;
+                    startTime = SDL_GetTicks();
                 }
                 if (mouseX >= 445 && mouseX <= 638 && mouseY >= 401 && mouseY <= 455) {
                     quit = true;
@@ -342,6 +343,10 @@ void Game::renderGraphics() {
         graphics.renderTexture(levelText, 30, 58);
         SDL_DestroyTexture(levelText);
 
+        playingTimeText = graphics.renderText(getTimeText(playingTime), CrocanteFont, WHITE_COLOR);
+        graphics.renderTexture(playingTimeText, 655, 27);
+        SDL_DestroyTexture(playingTimeText);
+
         graphics.renderTexture(hole_img, hole.getPosition().x, hole.getPosition().y);
 
         graphics.renderTexture(paint_img, paint.getPosition().x - 4, paint.getPosition().y - 4);
@@ -469,8 +474,7 @@ void Game::playAgain(bool& playedAgain, bool& musicPlayed) {
 }
 
 void Game::running(bool& quit) {
-    frameTime = SDL_GetTicks() - frameStart;
-    frameTime = frameStart;
+    frameStart = SDL_GetTicks();
 
     static bool playedAgain = false;
     static bool musicPlayed = false;
@@ -478,6 +482,13 @@ void Game::running(bool& quit) {
     handleEvents(playedAgain, quit);
 
     ball.update(mouseDown, mousePressed, hole, tiles, cactus, slime, movingTiles, hit_sound, bounce_sound, strokes);
+
+    if (status == PLAYING_STATUS) {
+        playingTime = getTime(startTime, ball.getWinStatus(), ball.getGameOverStatus(), level);
+        if (playingTime == 0) {
+            ball.setGameOverStatus(true);
+        }
+    }
 
     renderGraphics();
 
@@ -509,6 +520,7 @@ void Game::running(bool& quit) {
         resumeMusic();
     }
 
+    frameTime = SDL_GetTicks() - frameStart;
     if (frameDelay > frameTime) {
         SDL_Delay(frameDelay - frameTime);
     }

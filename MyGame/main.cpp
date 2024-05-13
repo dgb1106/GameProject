@@ -13,6 +13,7 @@
 #include "hole.h"
 #include "tile.h"
 #include "music.h"
+#include "timer.h"
 
 using namespace std;
 

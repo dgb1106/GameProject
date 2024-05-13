@@ -48,6 +48,7 @@
 		<Unit filename="text.cpp" />
 		<Unit filename="text.h" />
 		<Unit filename="tile.h" />
+		<Unit filename="timer.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

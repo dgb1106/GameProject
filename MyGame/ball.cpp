@@ -93,6 +93,7 @@ void Ball::checkCollision(std::vector <Tile> tiles, std::vector <Tile> cactus, s
     }
 
     for (Tile m : movingTiles) {
+        m.moving();
         double newX = getPosition().x + velocity.x;
         double newY = getPosition().y;
         if (newX + BALL_SIZE >= m.getPosition().x && newX <= m.getPosition().x + m.getTextureSize().w && newY + BALL_SIZE >= m.getPosition().y && newY <= m.getPosition().y + m.getTextureSize().h) {
