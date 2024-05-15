@@ -23,9 +23,9 @@
 	"music.h"
 	"timer.h"
 
-1715618671 c:\users\duong\documents\gameproject\mygame\defs.h
+1715788918 c:\users\duong\documents\gameproject\mygame\defs.h
 
-1714640838 c:\users\duong\documents\gameproject\mygame\graphics.h
+1715787934 c:\users\duong\documents\gameproject\mygame\graphics.h
 	<iostream>
 	<cmath>
 	<SDL.h>
@@ -47,7 +47,7 @@
 	"graphics.h"
 	"background.h"
 
-1714841042 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
+1715787804 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -113,7 +113,7 @@
 	"defs.h"
 	"graphics.h"
 
-1715619384 c:\users\duong\documents\gameproject\mygame\game.h
+1715789022 c:\users\duong\documents\gameproject\mygame\game.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -130,7 +130,7 @@
 	"music.h"
 	"timer.h"
 
-1715620667 source:c:\users\duong\documents\gameproject\mygame\game.cpp
+1715790355 source:c:\users\duong\documents\gameproject\mygame\game.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
@@ -148,7 +148,7 @@
 1714460634 source:c:\users\duong\documents\gameproject\mygame\text.cpp
 	"text.h"
 
-1715621274 c:\users\duong\documents\gameproject\mygame\timer.h
+1715621528 c:\users\duong\documents\gameproject\mygame\timer.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

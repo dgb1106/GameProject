@@ -88,6 +88,11 @@ SDL_Texture* Graphics::renderText(const char* text, TTF_Font* font, SDL_Color co
     return texture;
 }
 
+void Graphics::render(const ScrollingBackground& bgr) {
+    renderTexture(bgr.texture, bgr.scrollingOffset, 0);
+    renderTexture(bgr.texture, bgr.scrollingOffset - bgr.width, 0);
+}
+
 void Graphics::quit() {
     IMG_Quit();
 
@@ -96,4 +101,14 @@ void Graphics::quit() {
     SDL_FreeSurface(windowIcon);
 
     SDL_Quit();
+}
+
+void ScrollingBackground::setTexture(SDL_Texture* _texture) {
+    texture = _texture;
+    SDL_QueryTexture(texture, nullptr, nullptr, &width, &height);
+}
+
+void ScrollingBackground::scroll(int distance) {
+    scrollingOffset -= distance;
+    if (scrollingOffset < 0) scrollingOffset = width;
 }

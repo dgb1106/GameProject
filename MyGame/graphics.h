@@ -10,6 +10,18 @@
 
 void logErrorAndExit(const char* msg, const char* error);
 
+struct ScrollingBackground {
+    SDL_Texture* texture;
+
+    int scrollingOffset = 0;
+    int width;
+    int height;
+
+    void setTexture(SDL_Texture* _texture);
+
+    void scroll(int distance);
+};
+
 struct Graphics
 {
     SDL_Window* window;
@@ -31,6 +43,8 @@ struct Graphics
     void renderTexture(SDL_Texture* texture, int x, int y, double angle);
 
     SDL_Texture* renderText(const char* text, TTF_Font* font, SDL_Color color);
+
+    void render(const ScrollingBackground& bgr);
 
     void quit();
 };

@@ -13,9 +13,13 @@ void Game::initializeGraphics() {
     guide = graphics.loadTexture(GUIDE_IMG);
     completed = graphics.loadTexture(COMPLETE_IMG);
     gameOver = graphics.loadTexture(GAMEOVER_IMG);
+    endBackground = graphics.loadTexture(ENDBACKGROUND_IMG);
+    endScrollingBackground.setTexture(endBackground);
 
     backButton_White = graphics.loadTexture(BACKBUTTON_WHITE);
     backButton_Gold = graphics.loadTexture(BACKBUTTON_GOLD);
+    SoundButton_On = graphics.loadTexture(SOUNDBUTTON_ON);
+    SoundButton_Off = graphics.loadTexture(SOUNDBUTTON_OFF);
 
     ball_img = graphics.loadTexture(BALL_IMG);
     paint_img = graphics.loadTexture(PAINT_IMG);
@@ -81,7 +85,8 @@ void Game::handleEvents(bool& playedAgain, bool& quit) {
                 mousePressed = true;
                 mouseDown = true;
             }
-            if (status == MENU_STATUS) {
+            switch (status) {
+            case MENU_STATUS:
                 if (mouseX >= 99 && mouseX <= 230 && mouseY >= 420 && mouseY <= 474) {
                     status = GUIDE_STATUS;
                 }
@@ -92,13 +97,21 @@ void Game::handleEvents(bool& playedAgain, bool& quit) {
                 if (mouseX >= 577 && mouseX <= 709 && mouseY >= 420 && mouseY <= 474) {
                     quit = true;
                 }
-            }
-            if (status == GUIDE_STATUS) {
+                if (mouseX >= 32 && mouseX <= 64 && mouseY >= 32 && mouseY <= 64) {
+                    soundOn = !soundOn;
+                }
+                break;
+            case PLAYING_STATUS:
+                if (mouseX >= 605 && mouseX <= 637 && mouseY >= 20 && mouseY <= 52) {
+                    soundOn = !soundOn;
+                }
+                break;
+            case GUIDE_STATUS:
                 if (mouseX >= 84 && mouseX <= 116 && mouseY >= 70 && mouseY <= 102) {
                     status = MENU_STATUS;
                 }
-            }
-            if (status == GAMEOVER_STATUS) {
+                break;
+            case GAMEOVER_STATUS:
                 if (mouseX >= 159 && mouseX <= 352 && mouseY >= 401 && mouseY <= 455) {
                     playedAgain = true;
                     startTime = SDL_GetTicks();
@@ -106,8 +119,8 @@ void Game::handleEvents(bool& playedAgain, bool& quit) {
                 if (mouseX >= 445 && mouseX <= 638 && mouseY >= 401 && mouseY <= 455) {
                     quit = true;
                 }
-            }
-            if (status == COMPLETED_STATUS) {
+                break;
+            case COMPLETED_STATUS:
                 if (mouseX >= 159 && mouseX <= 352 && mouseY >= 401 && mouseY <= 455) {
                     playedAgain = true;
                     startTime = SDL_GetTicks();
@@ -115,6 +128,7 @@ void Game::handleEvents(bool& playedAgain, bool& quit) {
                 if (mouseX >= 445 && mouseX <= 638 && mouseY >= 401 && mouseY <= 455) {
                     quit = true;
                 }
+                break;
             }
             break;
         case SDL_MOUSEBUTTONUP:
@@ -315,6 +329,14 @@ void Game::renderGraphics() {
         graphics.renderTexture(exitText, 612, 434);
         SDL_DestroyTexture(exitText);
 
+        if (soundOn) {
+            graphics.renderTexture(SoundButton_On, 32, 32);
+            Mix_PauseAudio(0);
+        } else {
+            graphics.renderTexture(SoundButton_Off, 32, 32);
+            Mix_PauseAudio(1);
+        }
+
         graphics.presentScene();
     }
 
@@ -334,6 +356,14 @@ void Game::renderGraphics() {
 
     if (status == PLAYING_STATUS) {
         graphics.prepareScene(background);
+
+        if (soundOn) {
+            graphics.renderTexture(SoundButton_On, 605, 20);
+            Mix_PauseAudio(0);
+        } else {
+            graphics.renderTexture(SoundButton_Off, 605, 20);
+            Mix_PauseAudio(1);
+        }
 
         strokesText = graphics.renderText(getStrokesCount(), CrocanteFont, WHITE_COLOR);
         graphics.renderTexture(strokesText, 30, 27);
@@ -378,7 +408,12 @@ void Game::renderGraphics() {
     }
 
     if (status == GAMEOVER_STATUS) {
-        graphics.prepareScene(gameOver);
+        graphics.prepareScene();
+
+        endScrollingBackground.scroll(1);
+        graphics.render(endScrollingBackground);
+
+        graphics.renderTexture(gameOver, 0, 0);
 
         SDL_Texture* lastestLevelText = graphics.renderText(getLastestLevelCount(), CrocanteFont, GOLD_COLOR);
         graphics.renderTexture(lastestLevelText, 300, 280);
@@ -406,7 +441,12 @@ void Game::renderGraphics() {
     }
 
     if (status == COMPLETED_STATUS) {
-        graphics.prepareScene(completed);
+        graphics.prepareScene();
+
+        endScrollingBackground.scroll(1);
+        graphics.render(endScrollingBackground);
+
+        graphics.renderTexture(completed, 0, 0);
 
         lowestStrokesText = graphics.renderText(getLowestStrokes(), CrocanteFont, GOLD_COLOR);
         graphics.renderTexture(lowestStrokesText, 275, 280);
@@ -541,10 +581,16 @@ void Game::freeMemory() {
     backButton_Gold = nullptr;
     SDL_DestroyTexture(backButton_White);
     backButton_White = nullptr;
+    SDL_DestroyTexture(SoundButton_On);
+    SoundButton_On = nullptr;
+    SDL_DestroyTexture(SoundButton_Off);
+    SoundButton_Off = nullptr;
     SDL_DestroyTexture(completed);
     completed = nullptr;
     SDL_DestroyTexture(gameOver);
     gameOver = nullptr;
+    SDL_DestroyTexture(endBackground);
+    endBackground = nullptr;
     SDL_DestroyTexture(ball_img);
     ball_img = nullptr;
     SDL_DestroyTexture(paint_img);

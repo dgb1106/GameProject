@@ -27,6 +27,8 @@ struct Game
     SDL_Texture* guide;
     SDL_Texture* completed;
     SDL_Texture* gameOver;
+    SDL_Texture* endBackground;
+    ScrollingBackground endScrollingBackground;
 
     SDL_Texture* ball_img;
     SDL_Texture* paint_img;
@@ -65,6 +67,8 @@ struct Game
 
     int status = MENU_STATUS;
 
+    SDL_Texture* SoundButton_On;
+    SDL_Texture* SoundButton_Off;
     SDL_Texture* backButton_White;
     SDL_Texture* backButton_Gold;
     SDL_Texture* playText;
@@ -83,6 +87,7 @@ struct Game
     bool quit = false;
     bool mouseDown = false;
     bool mousePressed = false;
+    bool soundOn = true;
 
     Uint32 frameStart;
     int frameTime;

@@ -26,9 +26,12 @@ const int GUIDE_STATUS = 3;
 #define BACKGROUND_IMG "assets\\images\\Background.png"
 #define COMPLETE_IMG "assets\\images\\Complete.png"
 #define GAMEOVER_IMG "assets\\images\\GameOver.png"
+#define ENDBACKGROUND_IMG "assets\\images\\EndBackground.png"
 
 #define BACKBUTTON_WHITE "assets\\images\\BackButton_White.png"
 #define BACKBUTTON_GOLD "assets\\images\\BackButton_Gold.png"
+#define SOUNDBUTTON_ON "assets\\images\\Sound_On.png"
+#define SOUNDBUTTON_OFF "assets\\images\\Sound_Off.png"
 
 #define BALL_IMG "assets\\images\\Ball.png"
 #define HOLE_IMG "assets\\images\\Hole.png"
