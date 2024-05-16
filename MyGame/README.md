@@ -9,7 +9,7 @@ MSSV: 23021475
 ### | Chủ đề Game: Mini Golf by dgb
 Đây là một game giả lập chuyển động của quả bóng Golf bằng cách **kéo thả chuột** để định hướng và căn chỉnh lực cho quả bóng di chuyển. Game có 5 level chơi, trong các level sẽ có những vật cản như những **viên đá** sẽ làm quả bóng bật lại khi chạm vào, **slime** sẽ làm chậm tốc độ di chuyển quả bóng, **xương rồng** khi chạm vào thì người chơi sẽ thua cuộc. Người chơi sẽ chiến thắng khi đi qua hết **5 level**.
 
-![menu](screenshots\\menu.png)
+![](screenshots/menu.png)
 
 #### | Ngưỡng điểm sinh viên cho là xứng đáng: 8.5
 ```
@@ -20,28 +20,33 @@ Lý do:
 - Game của sinh viên là game có đồ họa tự thiết kế
 ```
 
+## | Cách tải Game
+Cách 1: Tải code tại [link](https://github.com/dgb1106/GameProject/tree/main) ở dạng file zip, giải nén và mở file .exe
+
+Cách 2: Tải code tại [link](https://github.com/dgb1106/GameProject/tree/main), cài CodeBlocks và thư viện SDL, cài đặt môi trường cho SDL lần đầu ở CodeBlocks
+
 ## | Tổng quan về Gameplay
 
 #### Kéo thả chuột để quả bóng di chuyển
-![align](screenshots\\align.gif)
+![](screenshots/align.gif)
 
 #### Di chuyển va chạm vào hòn đá
-![collide](screenshots\\collide.gif)
+![](screenshots/collide.gif)
 
 #### Di chuyển vào vùng slime
-![slime](screenshots\\slime.gif)
+![](screenshots/slime.gif)
 
 #### Nhặt box thêm thời gian
-![collect](screenshots\\collect.gif)
+![](screenshots/collect.gif)
 
 #### Xương rồng
-![cactus](screenshots\\cactus.gif)
+![](screenshots/cactus.gif)
 
 #### Thắng level
-![winLevels](screenshots\\winLevels.gif)
+![](screenshots/winLevels.gif)
 
 #### Đếm ngược thời gian
-![countdown](screenshots\\countdown.gif)
+![](screenshots/countdown.gif)
 
 Đây là toàn bộ những cơ chế cơ bản có trong game giúp đa dạng lối chơi và độ khó. Người chơi cần chọn cách di chuyển và căn chỉnh lực khéo léo để vượt qua các thử thách của trò chơi.
 
