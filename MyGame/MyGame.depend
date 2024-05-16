@@ -115,7 +115,7 @@
 	"defs.h"
 	"graphics.h"
 
-1715830870 c:\users\duong\documents\gameproject\mygame\game.h
+1715879626 c:\users\duong\documents\gameproject\mygame\game.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -132,7 +132,7 @@
 	"music.h"
 	"timer.h"
 
-1715839118 source:c:\users\duong\documents\gameproject\mygame\game.cpp
+1715876394 source:c:\users\duong\documents\gameproject\mygame\game.cpp
 	<iostream>
 	<ctime>
 	<cstdlib>

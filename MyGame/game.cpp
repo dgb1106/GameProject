@@ -387,6 +387,10 @@ void Game::renderGraphics() {
             Mix_PauseAudio(1);
         }
 
+        for (Tile s : slime) {
+            graphics.renderTexture(s.getTexture(), s.getPosition().x, s.getPosition().y);
+        }
+
         for (Sprite s : boxes) {
             graphics.render(s.position.x, s.position.y, s);
         }
@@ -420,10 +424,6 @@ void Game::renderGraphics() {
 
         for (Tile c : cactus) {
             graphics.renderTexture(c.getTexture(), c.getPosition().x, c.getPosition().y);
-        }
-
-        for (Tile s : slime) {
-            graphics.renderTexture(s.getTexture(), s.getPosition().x, s.getPosition().y);
         }
 
         graphics.renderTexture(arrow_img, ball.getArrowPosition().x, ball.getArrowPosition().y, ball.getAngle());
@@ -569,7 +569,7 @@ void Game::running(bool& quit) {
         musicPlayed = true;
     }
 
-    if (ball.getWinStatus() == true) {
+    if (ball.getWinStatus() == true && level <= 5) {
         if (level <= 4) play(levelUp_sound);
         SDL_Delay(1000);
         level++;
@@ -587,10 +587,10 @@ void Game::running(bool& quit) {
         resumeMusic();
     }
 
-    frameTime = SDL_GetTicks() - frameStart;
+    /*frameTime = SDL_GetTicks() - frameStart;
     if (frameDelay > frameTime) {
         SDL_Delay(frameDelay - frameTime);
-    }
+    }*/
 }
 
 void Game::freeMemory() {
