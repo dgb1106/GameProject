@@ -10,7 +10,7 @@
 #include "graphics.h"
 #include "ball.h"
 
-inline int getTime(Uint32 startTime, bool win, bool gameOver, int level) {
+inline int getTime(Uint32 startTime, bool win, bool gameOver, bool& collected, int level) {
     Uint32 elapsedTime = (SDL_GetTicks() - startTime) / 1000;
     static int extraTime = 0;
     int remainingTime = STANDARD_DURATION - elapsedTime + extraTime;
@@ -23,6 +23,11 @@ inline int getTime(Uint32 startTime, bool win, bool gameOver, int level) {
     if (win && !timeAdded) {
         extraTime += STANDARD_DURATION * 2/3;
         timeAdded = true;
+    }
+
+    if (collected) {
+        extraTime += 5;
+        collected = false;
     }
 
     if (!win) {

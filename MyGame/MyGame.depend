@@ -6,7 +6,7 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1715611766 source:c:\users\duong\documents\gameproject\mygame\main.cpp
+1715836986 source:c:\users\duong\documents\gameproject\mygame\main.cpp
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -23,15 +23,17 @@
 	"music.h"
 	"timer.h"
 
-1715788918 c:\users\duong\documents\gameproject\mygame\defs.h
+1715831295 c:\users\duong\documents\gameproject\mygame\defs.h
 
-1715787934 c:\users\duong\documents\gameproject\mygame\graphics.h
+1715839011 c:\users\duong\documents\gameproject\mygame\graphics.h
 	<iostream>
 	<cmath>
+	<vector>
 	<SDL.h>
 	<SDL_image.h>
 	"defs.h"
 	"text.h"
+	"object.h"
 
 1711734446 c:\users\duong\documents\gameproject\mygame\background.h
 	<iostream>
@@ -47,14 +49,14 @@
 	"graphics.h"
 	"background.h"
 
-1715787804 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
+1715838265 source:c:\users\duong\documents\gameproject\mygame\graphics.cpp
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 	"graphics.h"
 	"defs.h"
 
-1715589730 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
+1715839799 source:c:\users\duong\documents\gameproject\mygame\ball.cpp
 	<iostream>
 	<cmath>
 	<vector>
@@ -67,7 +69,7 @@
 	"tile.h"
 	"music.h"
 
-1715262379 c:\users\duong\documents\gameproject\mygame\ball.h
+1715839603 c:\users\duong\documents\gameproject\mygame\ball.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -103,17 +105,17 @@
 	"defs.h"
 	"object.h"
 
-1715181256 source:c:\users\duong\documents\gameproject\mygame\music.cpp
+1715819432 source:c:\users\duong\documents\gameproject\mygame\music.cpp
 	"music.h"
 
-1714922791 c:\users\duong\documents\gameproject\mygame\music.h
+1715819376 c:\users\duong\documents\gameproject\mygame\music.h
 	<iostream>
 	<SDL.h>
 	<SDL_mixer.h>
 	"defs.h"
 	"graphics.h"
 
-1715789022 c:\users\duong\documents\gameproject\mygame\game.h
+1715830870 c:\users\duong\documents\gameproject\mygame\game.h
 	<iostream>
 	<vector>
 	<SDL.h>
@@ -130,8 +132,10 @@
 	"music.h"
 	"timer.h"
 
-1715790355 source:c:\users\duong\documents\gameproject\mygame\game.cpp
+1715839118 source:c:\users\duong\documents\gameproject\mygame\game.cpp
 	<iostream>
+	<ctime>
+	<cstdlib>
 	<SDL.h>
 	<SDL_image.h>
 	<SDL_mixer.h>
@@ -148,7 +152,7 @@
 1714460634 source:c:\users\duong\documents\gameproject\mygame\text.cpp
 	"text.h"
 
-1715621528 c:\users\duong\documents\gameproject\mygame\timer.h
+1715839889 c:\users\duong\documents\gameproject\mygame\timer.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>

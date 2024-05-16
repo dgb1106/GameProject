@@ -49,6 +49,14 @@ void resumeMusic() {
     Mix_ResumeMusic();
 }
 
+void pauseAll() {
+    Mix_PauseAudio(1);
+}
+
+void resumeAll() {
+    Mix_PauseAudio(0);
+}
+
 void quitMusic() {
     Mix_Quit();
 }

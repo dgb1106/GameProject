@@ -32,7 +32,7 @@ void Ball::setFinalMousePosition(double _x, double _y) {
     finalMousePosition.y = _y;
 }
 
-void Ball::checkCollision(std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, std::vector <Tile> movingTiles, Mix_Chunk* bounce) {
+void Ball::checkCollision(std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, std::vector <Tile> movingTiles, std::vector <Sprite>& boxes, bool& extraTime, Mix_Chunk* bounce) {
     static bool xCollided = false;
     static bool yCollided = false;
 
@@ -41,20 +41,12 @@ void Ball::checkCollision(std::vector <Tile> tiles, std::vector <Tile> cactus, s
             gameOver = true;
             return;
         }
-        if (getPosition().x + BALL_SIZE >= c.getPosition().x && getPosition().x <= c.getPosition().x + c.getTextureSize().w && getPosition().y + BALL_SIZE >= c.getPosition().y && getPosition().y <= c.getPosition().y + c.getTextureSize().h) {
-            gameOver = true;
-            return;
-        }
     }
 
     for (Tile s : slime) {
         if (getPosition().x + BALL_SIZE >= s.getPosition().x && getPosition().x <= s.getPosition().x + s.getTextureSize().w && getPosition().y + BALL_SIZE >= s.getPosition().y && getPosition().y <= s.getPosition().y + s.getTextureSize().h) {
-            velocity.x -= velocity.x / 10;
-            velocity.y -= velocity.y / 10;
-        }
-        if (getPosition().x + BALL_SIZE >= s.getPosition().x && getPosition().x <= s.getPosition().x + s.getTextureSize().w && getPosition().y + BALL_SIZE >= s.getPosition().y && getPosition().y <= s.getPosition().y + s.getTextureSize().h) {
-            velocity.x -= velocity.x / 10;
-            velocity.y -= velocity.y / 10;
+            velocity.x -= velocity.x / 5;
+            velocity.y -= velocity.y / 5;
         }
     }
 
@@ -107,6 +99,13 @@ void Ball::checkCollision(std::vector <Tile> tiles, std::vector <Tile> cactus, s
             play(bounce);
         }
     }
+
+    for (Sprite& s : boxes) {
+        if (getPosition().x + BALL_SIZE >= s.position.x && getPosition().x <= s.position.x + 30 && getPosition().y + BALL_SIZE >= s.position.y && getPosition().y <= s.position.y + 30) {
+            s.setPosition(-100, -100);
+            extraTime = true;
+        }
+    }
 }
 
 bool Ball::checkWin(Hole hole) {
@@ -119,7 +118,7 @@ bool Ball::checkWin(Hole hole) {
     return false;
 }
 
-void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, std::vector <Tile> movingTiles, Mix_Chunk* hit, Mix_Chunk* bounce, int& strokes) {
+void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Tile> tiles, std::vector <Tile> cactus, std::vector <Tile> slime, std::vector <Tile> movingTiles, std::vector <Sprite>& boxes, bool& extraTime, Mix_Chunk* hit, Mix_Chunk* bounce, int& strokes) {
     if (mousePressed && moving) {
         int mouseX = 0;
         int mouseY = 0;
@@ -181,7 +180,7 @@ void Ball::update(bool mouseDown, bool mousePressed, Hole hole, std::vector <Til
             setVelocity(0,0);
             moving = true;
         }
-        checkCollision(tiles, cactus, slime, movingTiles, bounce);
+        checkCollision(tiles, cactus, slime, movingTiles, boxes, extraTime, bounce);
         if (gameOver == true) return;
     }
     bool check = checkWin(hole);

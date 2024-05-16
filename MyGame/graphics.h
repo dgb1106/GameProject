@@ -3,10 +3,12 @@
 
 #include <iostream>
 #include <cmath>
+#include <vector>
 #include <SDL.h>
 #include <SDL_image.h>
 #include "defs.h"
 #include "text.h"
+#include "object.h"
 
 void logErrorAndExit(const char* msg, const char* error);
 
@@ -20,6 +22,28 @@ struct ScrollingBackground {
     void setTexture(SDL_Texture* _texture);
 
     void scroll(int distance);
+};
+
+struct Sprite {
+    SDL_Texture* texture;
+    Vector position;
+    std::vector<SDL_Rect> clips;
+    int currentFrame = 0;
+
+    Sprite() {}
+
+    Sprite(SDL_Texture* _texture, Vector _position);
+
+    void setPosition(int _x, int _y) {
+        position.x = _x;
+        position.y = _y;
+    }
+
+    void tick();
+
+    const SDL_Rect* getCurrentClip() const {
+        return &(clips[currentFrame]);
+    }
 };
 
 struct Graphics
@@ -45,6 +69,8 @@ struct Graphics
     SDL_Texture* renderText(const char* text, TTF_Font* font, SDL_Color color);
 
     void render(const ScrollingBackground& bgr);
+
+    void render(int x, int y, const Sprite& sprite);
 
     void quit();
 };

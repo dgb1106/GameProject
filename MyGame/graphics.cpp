@@ -93,6 +93,12 @@ void Graphics::render(const ScrollingBackground& bgr) {
     renderTexture(bgr.texture, bgr.scrollingOffset - bgr.width, 0);
 }
 
+void Graphics::render(int x, int y, const Sprite& sprite) {
+    const SDL_Rect* clip = sprite.getCurrentClip();
+    SDL_Rect renderQuad = {x, y, clip->w, clip->h};
+    SDL_RenderCopy(renderer, sprite.texture, clip, &renderQuad);
+}
+
 void Graphics::quit() {
     IMG_Quit();
 
@@ -111,4 +117,19 @@ void ScrollingBackground::setTexture(SDL_Texture* _texture) {
 void ScrollingBackground::scroll(int distance) {
     scrollingOffset -= distance;
     if (scrollingOffset < 0) scrollingOffset = width;
+}
+
+Sprite::Sprite(SDL_Texture* _texture, Vector _position) : texture(_texture), position(_position) {
+    SDL_Rect clip;
+    for (int i = 0; i < BOX_FRAMES; i++) {
+        clip.x = BOX_CLIPS[i][0];
+        clip.y = BOX_CLIPS[i][1];
+        clip.w = BOX_CLIPS[i][2];
+        clip.h = BOX_CLIPS[i][3];
+        clips.push_back(clip);
+    }
+}
+
+void Sprite::tick() {
+    currentFrame = (currentFrame + 1) % clips.size();
 }

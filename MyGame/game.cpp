@@ -1,4 +1,6 @@
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_mixer.h>
@@ -31,6 +33,7 @@ void Game::initializeGraphics() {
     tileVertical_img = graphics.loadTexture(TILEVERTICAL_IMG);
     cactus_img = graphics.loadTexture(CACTUS_IMG);
     slime_img = graphics.loadTexture(SLIME_IMG);
+    box_img = graphics.loadTexture(BOX_IMG);
 
     icon = IMG_Load(CURSOR_IMG);
     cursor = SDL_CreateColorCursor(icon, 18, 100);
@@ -261,6 +264,15 @@ std::vector <Tile> Game::loadMovingTiles(std::vector <Tile>& movingTiles, int le
     return movingTiles;
 }
 
+std::vector <Sprite> Game::loadBoxes(std::vector <Sprite>& boxes) {
+    boxes.clear();
+    srand(time(NULL));
+    boxes.push_back(Sprite(box_img, Vector(rand() % (SCREEN_WIDTH - 17 - 30) + 17, rand() % (SCREEN_HEIGHT - 13 - 30) + 13)));
+    boxes.push_back(Sprite(box_img, Vector(rand() % (SCREEN_WIDTH - 17 - 30) + 17, rand() % (SCREEN_HEIGHT - 13 - 30) + 13)));
+    boxes.push_back(Sprite(box_img, Vector(rand() % (SCREEN_WIDTH - 17 - 30) + 17, rand() % (SCREEN_HEIGHT - 13 - 30) + 13)));
+    return boxes;
+}
+
 void Game::loadLevel(int level) {
     ball.setVelocity(0, 0);
     ball.setWin(false);
@@ -269,6 +281,7 @@ void Game::loadLevel(int level) {
     cactus = loadCactus(cactus, level);
     slime = loadSlime(slime, level);
     movingTiles = loadMovingTiles(movingTiles, level);
+    boxes = loadBoxes(boxes);
 
     switch (level) {
     case 1:
@@ -331,10 +344,10 @@ void Game::renderGraphics() {
 
         if (soundOn) {
             graphics.renderTexture(SoundButton_On, 32, 32);
-            Mix_PauseAudio(0);
+            resumeAll();
         } else {
             graphics.renderTexture(SoundButton_Off, 32, 32);
-            Mix_PauseAudio(1);
+            pauseAll();
         }
 
         graphics.presentScene();
@@ -355,6 +368,15 @@ void Game::renderGraphics() {
     }
 
     if (status == PLAYING_STATUS) {
+        static int countTicks = 0;
+        countTicks++;
+        if (countTicks == 4) {
+            for (Sprite& s : boxes) {
+                s.tick();
+            }
+            countTicks = 0;
+        }
+
         graphics.prepareScene(background);
 
         if (soundOn) {
@@ -363,6 +385,10 @@ void Game::renderGraphics() {
         } else {
             graphics.renderTexture(SoundButton_Off, 605, 20);
             Mix_PauseAudio(1);
+        }
+
+        for (Sprite s : boxes) {
+            graphics.render(s.position.x, s.position.y, s);
         }
 
         strokesText = graphics.renderText(getStrokesCount(), CrocanteFont, WHITE_COLOR);
@@ -518,13 +544,14 @@ void Game::running(bool& quit) {
 
     static bool playedAgain = false;
     static bool musicPlayed = false;
+    static bool extraTime = false;
 
     handleEvents(playedAgain, quit);
 
-    ball.update(mouseDown, mousePressed, hole, tiles, cactus, slime, movingTiles, hit_sound, bounce_sound, strokes);
+    ball.update(mouseDown, mousePressed, hole, tiles, cactus, slime, movingTiles, boxes, extraTime, hit_sound, bounce_sound, strokes);
 
     if (status == PLAYING_STATUS) {
-        playingTime = getTime(startTime, ball.getWinStatus(), ball.getGameOverStatus(), level);
+        playingTime = getTime(startTime, ball.getWinStatus(), ball.getGameOverStatus(), extraTime, level);
         if (playingTime == 0) {
             ball.setGameOverStatus(true);
         }
@@ -611,6 +638,8 @@ void Game::freeMemory() {
     slime_img = nullptr;
     SDL_DestroyTexture(cactus_img);
     cactus_img = nullptr;
+    SDL_DestroyTexture(box_img);
+    box_img = nullptr;
 
     SDL_FreeSurface(icon);
     icon = nullptr;

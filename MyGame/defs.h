@@ -26,7 +26,7 @@ const int GUIDE_STATUS = 3;
 #define BACKGROUND_IMG "assets\\images\\Background.png"
 #define COMPLETE_IMG "assets\\images\\Complete.png"
 #define GAMEOVER_IMG "assets\\images\\GameOver.png"
-#define ENDBACKGROUND_IMG "assets\\images\\EndBackground.png"
+#define ENDBACKGROUND_IMG "assets\\images\\endBackground.png"
 
 #define BACKBUTTON_WHITE "assets\\images\\BackButton_White.png"
 #define BACKBUTTON_GOLD "assets\\images\\BackButton_Gold.png"
@@ -70,5 +70,17 @@ const double AMPLITUDE = 64.0;
 const double FREQUENCY = 0.5;
 
 const double STANDARD_DURATION = 30.0;
+
+#define BOX_IMG "assets\\images\\box.png"
+const int BOX_CLIPS[][4] = {
+    {  0, 0, 30, 30},
+    { 32, 0, 30, 30},
+    { 63, 0, 30, 30},
+    { 95, 0, 30, 30},
+    {126, 0, 30, 30},
+    {158, 0, 30, 30},
+    {191, 0, 30, 30}
+};
+const int BOX_FRAMES = sizeof(BOX_CLIPS) / sizeof(int) / 4;
 
 #endif // _DEFS__H

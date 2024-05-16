@@ -22,6 +22,10 @@ void pauseMusic();
 
 void resumeMusic();
 
+void pauseAll();
+
+void resumeAll();
+
 void quitMusic();
 
 #endif // _MUSIC__H
