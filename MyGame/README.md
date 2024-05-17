@@ -15,7 +15,7 @@ MSSV: 23021475
 
 ![](screenshots/menu.png)
 
-#### | Ngưỡng điểm sinh viên cho là xứng đáng: `8.5 - 9`
+#### | Ngưỡng điểm sinh viên cho là xứng đáng: `9`
 ```
 Lý do:
 - Đây là game sinh viên tự làm
