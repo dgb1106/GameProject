@@ -78,8 +78,19 @@ Youtube: https://youtu.be/LNvfMJ4f58M
 - Thuật toán: tự xây dựng dựa trên kiến thức toán học, vật lý, tham khảo từ mentor, StackOverFlow, ChatGPT,...
 - Nguồn học thư viện: tài liệu môn học, [lazyfoo](https://lazyfoo.net/), [SDLWiki](https://wiki.libsdl.org/SDL2/CategoryAPI), StackOverFlow
 
+## | Những khó khăn và bài học kinh nghiệm
+
+Ở đây, em xin phép nêu ra những khó khăn mà bản thân đã gặp phải trong suốt quá trình học và làm game rồi từ đó có cho bản thân những bài học kinh nghiệm quý giá.
+
+- Khi bắt đầu: bị ngợp trước thư viện, kiến thức, chương trình, không biết phải bắt đầu từ đâu và như thế nào, gọi hàm giữa các class, các file khác nhau
+- Khó khăn về việc kế thừa các class: em chưa bao giờ sử dụng công cụ này nên phải tìm hiểu từ đầu và sửa lỗi qua từng lần sử dụng, em đã thoát khỏi giai đoạn này bằng việc hỏi thêm giảng viên, xem các tutorial và hướng dẫn trên mạng, học các bài học của lazyfoo... để hiểu cơ chế của game và cách tổ chức chương trình phù hợp.
+- Sử dụng con trỏ gây ra thất thoát bộ nhớ: trong quá trình làm game, có những con trỏ được cấp phát động và em chưa xóa nó đi khi không cần đến nữa trong khi nhịp game loop mới nó lại cấp phát động gây ra việc chương trình của em ngày một tiêu tốn nhiều bộ nhớ (dù chưa sập chương trình vì RAM cao), em đã sửa được lỗi này ở giai đoạn sau của kỳ học.
+- Khó khăn trong việc tìm và sử dụng đồ họa: em có lên mạng và các trang về game để tìm kiếm đồ họa nhưng không được bộ assets nào ưng ý, vì vậy dù mất thời gian nhưng em đã quyết định sẽ tự tay vẽ và thiết kế đa số thành phần trong bộ đồ họa của mình.
+- Khó khăn và mất thời gian trong việc fix bugs: có những lỗi ở trong chương trình xảy ra mà em mất rất nhiều thời gian để sửa, không biết lỗi từ đâu mà ra, không thể nhờ bạn bè, thầy cô hay chatGPT để debug được, em rút ra kinh nghiệm mỗi khi thêm một tính năng nào mới, mình phải đánh dấu lại, cerr ra màn hình để biết chương trình vì đâu mà xảy ra lỗi, phân tích thật kỹ những chỗ mà có khả năng gây lỗi.
+
 ## | Lời cảm ơn
 Sinh viên Dương Gia Bảo xin gửi lời cảm ơn chân thành nhất tới hai thầy cô phụ trách môn học, các anh trợ giảng, các bạn sinh viên khác, những người làm nội dung về chủ đề này ở các nền tảng đã hỗ trợ mình để hoàn thành được sản phẩm này.
+
 **Liên hệ:**
 Dương Gia Bảo
 Mobile: (+84) 862376602
