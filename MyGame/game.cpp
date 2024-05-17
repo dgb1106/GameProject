@@ -587,10 +587,10 @@ void Game::running(bool& quit) {
         resumeMusic();
     }
 
-    /*frameTime = SDL_GetTicks() - frameStart;
+    frameTime = SDL_GetTicks() - frameStart;
     if (frameDelay > frameTime) {
         SDL_Delay(frameDelay - frameTime);
-    }*/
+    }
 }
 
 void Game::freeMemory() {
