@@ -1,5 +1,6 @@
 # GameProject
  
+**Bài tập lớn** môn học **Lập trình nâng cao** 2324II_INT2215_22 - K68CA1
 ```
 Họ và tên: Dương Gia Bảo
 Lớp: K68CA1
@@ -17,7 +18,8 @@ Lý do:
 - Đây là game sinh viên tự làm
 - Game có sử dụng các thư viện SDL mở rộng (SDL_image, SDL_mixer, SDL_ttf)
 - Thuật toán về chuyển động của game được sinh viên tự sáng tạo và áp dụng, tự học và tự xử lý một số cơ chế
-- Game của sinh viên là game có đồ họa tự thiết kế
+- Sử dụng được các nội dung đã học trong môn học (con trỏ, hàm, class, struct...)
+- Game của sinh viên là game có đồ họa tự thiết kế, đẹp mắt, có nhạc nền sôi động
 ```
 
 ## | Cách tải Game
@@ -67,3 +69,7 @@ Youtube: https://youtu.be/LNvfMJ4f58M
 
 ## | Lời cảm ơn
 Sinh viên Dương Gia Bảo xin gửi lời cảm ơn chân thành nhất tới hai thầy cô phụ trách môn học, các anh trợ giảng, các bạn sinh viên khác, những người làm nội dung về chủ đề này ở các nền tảng đã hỗ trợ mình để hoàn thành được sản phẩm này.
+**Liên hệ:**
+Dương Gia Bảo
+Mobile: (+84) 862376602
+Email: 23021475@vnu.edu.vn / duonggiabao1106@gmail.com
