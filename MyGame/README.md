@@ -1,6 +1,9 @@
 # GameProject
  
 **Bài tập lớn** môn học **Lập trình nâng cao** 2324II_INT2215_22 - K68CA1
+**Giảng viên:**
+TS. Trần Thị Minh Châu
+ThS. Kiều Hải Đăng
 ```
 Họ và tên: Dương Gia Bảo
 Lớp: K68CA1
@@ -62,7 +65,15 @@ Youtube: https://youtu.be/LNvfMJ4f58M
 - Đa số đồ họa đều được sinh viên tự tay vẽ và thiết kế (có sử dụng các ứng dụng như Adobe Fresco, Canva...)
 - Một số hình ảnh ở trong game được lấy từ [itch.io](https://itch.io/), [freepik](https://www.freepik.com)
 
-2. Thuật toán, source code:
+2. Font chữ:
+- [Dafont](https://www.dafont.com/)
+- Canva
+
+3. Nhạc nền và âm thanh phụ:
+- [itch.io](https://itch.io/)
+- [pixarbay](https://pixabay.com/music/search/game/)
+
+4. Thuật toán, source code:
 - Cơ chế, ý tưởng: game [TwiniGolf](https://www.youtube.com/watch?v=iEn0ozP-jxc) từ kênh Youtube [PolyMars++](https://www.youtube.com/@PolyMarsLIVE), Series [hướng dẫn làm game với SDL2](https://l.facebook.com/l.php?u=https%3A%2F%2Fyoutube.com%2Fplaylist%3Flist%3DPLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx%26si%3DBWRxdF580jgXODUn&h=AT13OEDZigP4oA20Tv7HP_heZbkzXQ2wmH9Z5KFxYoSRSEx83RV88BZbUjLPgUADQVuThOoPhfY475fkLsVDKEAmtWs4ff9V4kZ2TGKVulq-_kjf2wNlHedRCeqSSjrkUUvtjiCEHSb6knE&s=1) từ kênh Youtube Let's Make Game
 - Thuật toán: tự xây dựng dựa trên kiến thức toán học, vật lý, tham khảo từ mentor, StackOverFlow, ChatGPT,...
 - Nguồn học thư viện: tài liệu môn học, [lazyfoo](https://lazyfoo.net/), [SDLWiki](https://wiki.libsdl.org/SDL2/CategoryAPI), StackOverFlow
